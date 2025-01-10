@@ -1,0 +1,10 @@
+backup/
+*/backup/
+**/backup/
+access/
+*/access/
+**/access/
+
+mongo_backup/
+*/mongo_backup/
+**/mongo_backup/
