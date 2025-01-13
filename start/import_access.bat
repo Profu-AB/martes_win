@@ -1,5 +1,5 @@
 @echo off
-echo Importerar indatauppsättningar fron access databaser till Martes databasen...
+echo Martes Import Access
 
 REM Load environment variables from .env file
 setlocal enabledelayedexpansion
@@ -7,7 +7,7 @@ for /f "tokens=1,2 delims==" %%a in ('type .env') do (
     if "%%a"=="MARTES_REMOTE_HOME" set "MARTES_REMOTE_HOME=%%b"
 )
 
-REM Kontrollera om variabeln är satt
+REM Check if the variable is set
 if "%MARTES_REMOTE_HOME%"=="" (
     echo MARTES_REMOTE_HOME är inte satt. Kontrollera .env-filen.
     pause
@@ -17,12 +17,18 @@ if "%MARTES_REMOTE_HOME%"=="" (
 REM Debug: Print the value of MARTES_REMOTE_HOME
 echo MARTES_REMOTE_HOME is set to: %MARTES_REMOTE_HOME%
 
-REM Run the backup script
+REM Get the current directory in Windows format
+for /f "delims=" %%i in ('wsl wslpath -w "$(pwd)"') do set CURRENT_PATH=%%i
 
+REM Move up one directory
+set PARENT_PATH=%~dp0..
+cd %PARENT_PATH%
+set PARENT_PATH=%cd%\msaccess
 
-wsl mkdir -p "%MARTES_REMOTE_HOME%/msaccess/"
-wsl cp -r /mnt/c/martes_win/access/* /home/martin/martes_setup/msaccess/
-wsl sh "%MARTES_REMOTE_HOME%/import_from_access.sh"
- 
+REM Debug: Print the value of PARENT_PATH
+echo PARENT_PATH is set to: %PARENT_PATH%
+
+REM Run the import script
+wsl sh "%MARTES_REMOTE_HOME%/import_access.sh" "%PARENT_PATH%"
 
 pause
