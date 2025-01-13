@@ -54,8 +54,14 @@
 
     <div class="section">
         <h2>2. Installera WSL 2.0</h2>
+        <p><strong>Notera:</strong> Om du redan har WSL 2.0 installerat kan du hoppa över detta steg. <strong>Detta steg kräver administratörsrättigheter.</strong></p>
         <ol>
-            <li>Öppna ett <code>kommandofönster (Command Prompt)</code> med administratörsrättigheter.</li>
+            <li>Öppna programmet <strong>Windows Terminal</strong> med administratörsrättigheter genom att:
+                <ul>
+                    <li>Söka efter "Terminal" i Start-menyn.</li>
+                    <li>Högerklicka på "Windows Terminal" och välja <strong>Kör som administratör</strong>.</li>
+                </ul>
+            </li>
             <li>Kör följande kommando för att installera WSL och ställa in version 2 som standard:
                 <pre><code>wsl --install</code></pre>
             </li>
@@ -67,6 +73,7 @@
 
     <div class="section">
         <h2>3. Installera och verifiera Ubuntu 22.04.05 LTS</h2>
+        <p><strong>Notera:</strong> Om du redan har Ubuntu 22.04.05 LTS installerat kan du hoppa över detta steg.</p>
         <ol>
             <li>Öppna <strong>Microsoft Store</strong>.</li>
             <li>Sök efter <strong>Ubuntu 22.04.05 LTS</strong> och klicka på <strong>Installera</strong>.</li>
@@ -85,6 +92,7 @@
 
     <div class="section">
         <h2>4. Installera Git i Windows</h2>
+        <p><strong>Notera:</strong> Om du redan har Git installerat kan du hoppa över detta steg.</p>
         <ol>
             <li>Ladda ner Git från <a href="https://git-scm.com/" target="_blank">Git for Windows</a>.</li>
             <li>Kör installationsprogrammet och följ anvisningarna (välj standardinställningar om du är osäker).</li>
@@ -98,7 +106,7 @@
     <div class="section">
         <h2>5. Installera Martes på Windows</h2>
         <ol>
-            <li>Öppna ett kommandofönster (Command Prompt) med administratörsrättigheter.</li>
+            <li>Öppna programmet <strong>Windows Terminal</strong> (sök efter "Terminal" i Start-menyn).</li>
             <li>Gå till en mapp där du vill installera Martes, t.ex. <code>C:\</code>:
                 <pre><code>cd C:\</code></pre>
             </li>
@@ -115,6 +123,12 @@
                 <pre><code>install.bat</code></pre>
             </li>
             <li>Följ instruktionerna under körningen av <code>install.bat</code> för att slutföra installationen.</li>
+            <li>Kontrollera installationen</li>
+            <ul>
+                <li>Öppna din webbläsare och navigera till <code>http://localhost:3000</code>. Om Martes visas korrekt är installationen klar.</li>
+                <li>Du kan också testa adressen http://localhost:8000. Detta är simuleringsdelen av Martes. Det bör visas en sida här. Klickar du på texten Martes så slå gärna på ljudet på din dator först!</li>
+                <li>Om du har Mongodb Compass installerat i Windows kan du prova att öppna Martes databasen genom att ansluta till port 27018</li>
+            </ul>
         </ol>
     </div>
 </body>

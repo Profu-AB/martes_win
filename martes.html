@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Martes Start</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        pre {
+            background-color: transparent;
+            color: #333;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border: 1px solid #ddd;
+        }
+        code {
+            font-family: Consolas, "Courier New", monospace;
+            background-color: #f1f1f1;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<html lang="en">
+    
+    <body>
+       <div>
+        <h1>Martes Start</h1>
+        <p>Detta är en guide för att starta Martes på din dator efter att du har <a href="index.html">installerat det.</a></p>
+        <p>I mappen där du hämtade <strong>Martes</strong> finns undermappen start. I denna finns följande script:</p>
+        <ul>
+            <li>start.bat</li>
+            <ul>
+                <li>Startar alla bakgrundstjänster för Martes</li>
+                <li>Öppnar en webläsare med adressen http://localhost:3000</li>
+            </ul>
+            <li>stop.bat</li>
+            <ul>
+                <li>Stänger ner alla bakgrundstjänster för Martes</li>
+                <li>Efter du kört detta script kommer du inte längre åt Martes. Du startar dock enkelt upp det igen med <strong>start.bat</strong>.</li>
+            </ul>
+            <li>backup.bat</li>
+            <ul>
+                <li>Tar backup på martes databasen.</li>
+            </ul>
+            <li>restore.bat</li>
+            <ul>
+                <li>Återställer en tidigare backup som du gjort med <strong>backup.bat</strong>. Observera att den ersätter allt som finns i din Martes databas just nu.</li>
+            </ul>
+            <li>update.bat</li>
+            <ul>
+                <li>Hämtar den senaste uppdateringen av Martes och ersätter din gamla installation.</li>
+            </ul>
+            <li>import_access.bat</li>
+            <ul>
+                <li>Importerar indatauppsättningar från tidigare martes databaser (*.mdb)</li>
+            </ul>
+        </ul>
+       </div>
+    </body>
+</html>

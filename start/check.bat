@@ -14,6 +14,8 @@ if "%MARTES_REMOTE_HOME%"=="" (
     exit /b
 )
 
+REM Print the value of MARTES_REMOTE_HOME
+echo MARTES_REMOTE_HOME=%MARTES_REMOTE_HOME%
 
 wsl docker ps
 
