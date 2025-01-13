@@ -20,8 +20,9 @@ echo MARTES_REMOTE_HOME is set to: %MARTES_REMOTE_HOME%
 REM Run the backup script
 
 
-
-wsl sh "%MARTES_REMOTE_HOME%/copy_accessdb_from_win.sh"
+wsl mkdir -p "%MARTES_REMOTE_HOME%/msaccess/"
+wsl cp -r /mnt/c/martes_win/access/* /home/martin/martes_setup/msaccess/
 wsl sh "%MARTES_REMOTE_HOME%/import_from_access.sh"
+ 
 
 pause
