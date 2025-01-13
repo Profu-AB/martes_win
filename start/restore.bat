@@ -1,4 +1,3 @@
-@echo off
 echo Martes Restore
 
 REM Load environment variables from .env file
@@ -7,9 +6,9 @@ for /f "tokens=1,2 delims==" %%a in ('type .env') do (
     if "%%a"=="MARTES_REMOTE_HOME" set "MARTES_REMOTE_HOME=%%b"
 )
 
-REM Kontrollera om variabeln är satt
+REM Check if the variable is set
 if "%MARTES_REMOTE_HOME%"=="" (
-    echo MARTES_REMOTE_HOME är inte satt. Kontrollera .env-filen.
+    echo MARTES_REMOTE_HOME is not set. Check the .env file.
     pause
     exit /b
 )
@@ -17,7 +16,17 @@ if "%MARTES_REMOTE_HOME%"=="" (
 REM Debug: Print the value of MARTES_REMOTE_HOME
 echo MARTES_REMOTE_HOME is set to: %MARTES_REMOTE_HOME%
 
-REM Run the backup script
-wsl sh "%MARTES_REMOTE_HOME%/docker_mongrestore.sh"
+REM Get the current directory in Windows format
+for /f "delims=" %%i in ('wsl wslpath -w "$(pwd)"') do set CURRENT_PATH=%%i
 
+REM Move up one directory
+set PARENT_PATH=%~dp0..
+cd %PARENT_PATH%
+set PARENT_PATH=%cd%
+
+REM Debug: Print the value of PARENT_PATH
+echo PARENT_PATH is set to: %PARENT_PATH%
+
+REM Run the restore script
+wsl sh "%MARTES_REMOTE_HOME%/restore.sh" "%PARENT_PATH%"
 pause

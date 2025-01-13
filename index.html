@@ -72,7 +72,7 @@
     </div>
 
     <div class="section">
-        <h2>3. Installera och verifiera Ubuntu 22.04.05 LTS</h2>
+        <h2>3. Installera och verifiera Ubuntu 22.04.05 LTS (eller senare)</h2>
         <p><strong>Notera:</strong> Om du redan har Ubuntu 22.04.05 LTS installerat kan du hoppa över detta steg.</p>
         <ol>
             <li>Öppna <strong>Microsoft Store</strong>.</li>
@@ -113,7 +113,7 @@
             <li>Kör följande kommando för att klona Martes-repositoriet:
                 <pre><code>git clone https://github.com/mmagnemyr/martes_win.git</code></pre>
             </li>
-            <li>Navigera in i den klonade mappen:
+            <li>Navigera till mappen martes_win:
                 <pre><code>cd martes_win</code></pre>
             </li>
             <li>Gå till installationsmappen:
@@ -121,6 +121,12 @@
             </li>
             <li>Kör installationsfilen:
                 <pre><code>install.bat</code></pre>
+                <ul>
+                    <li>OBS! Om ditt terminal förster inleder prompten med <strong>PS</strong> betyder det att du har öppnat en PopwerShell-terminal. Då måste du skriva <strong> &.\</strong innan namnet på bat-fieln.</li>
+                    <ul>
+                        <pre><code>&.\install.bat</code></pre>
+                    </ul>
+                </ul>
             </li>
             <li>Följ instruktionerna under körningen av <code>install.bat</code> för att slutföra installationen.</li>
             <li>Kontrollera installationen</li>
