@@ -8,3 +8,5 @@ access/
 mongo_backup/
 */mongo_backup/
 **/mongo_backup/
+.vscode/
+*/.vscode/
