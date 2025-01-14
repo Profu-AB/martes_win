@@ -5,6 +5,10 @@ access/
 */access/
 **/access/
 
+msaccess/
+*/msaccess/
+**/msaccess/
+
 mongo_backup/
 */mongo_backup/
 **/mongo_backup/
