@@ -17,7 +17,7 @@ if "%MARTES_REMOTE_HOME%"=="" (
 REM Debug: Print the value of MARTES_REMOTE_HOME
 echo MARTES_REMOTE_HOME is set to: %MARTES_REMOTE_HOME%
 
-REM Run the backup script
-wsl sh "%MARTES_REMOTE_HOME%/update.sh"
+REM Change to the directory containing update.sh and docker-compose.yml
+wsl bash -c "cd '%MARTES_REMOTE_HOME%' && sh update.sh"
 
 pause
