@@ -26,7 +26,7 @@ cd %PARENT_PATH%
 set PARENT_PATH=%cd%\msaccess
 
 REM Debug: Print the value of PARENT_PATH
-echo PARENT_PATH is set to: %PARENT_PATH%
+echo Access database path is set to: %PARENT_PATH%
 
 REM Run the import script
 wsl sh "%MARTES_REMOTE_HOME%/import_access.sh" "%PARENT_PATH%"
