@@ -1,4 +1,3 @@
-@echo off
 echo Martes Restore
 
 REM Load environment variables from .env file
@@ -20,21 +19,14 @@ echo MARTES_REMOTE_HOME is set to: %MARTES_REMOTE_HOME%
 REM Get the current directory in Windows format
 for /f "delims=" %%i in ('wsl wslpath -w "$(pwd)"') do set CURRENT_PATH=%%i
 
-REM Debug: Print the value of CURRENT_PATH
-echo CURRENT_PATH is set to: %CURRENT_PATH%
-
 REM Move up one directory
 set PARENT_PATH=%~dp0..
 cd %PARENT_PATH%
 set PARENT_PATH=%cd%
-
-REM Append msaccess to PARENT_PATH
-set PARENT_PATH=%PARENT_PATH%\msaccess
 
 REM Debug: Print the value of PARENT_PATH
 echo PARENT_PATH is set to: %PARENT_PATH%
 
 REM Run the restore script
 wsl sh "%MARTES_REMOTE_HOME%/restore.sh" "%PARENT_PATH%"
-
 pause

@@ -14,7 +14,7 @@ REM Clone the repository if it doesn't exist, otherwise pull the latest changes 
 wsl bash -c "sudo -u martes bash -c 'if [ ! -d ~/martes_setup ]; then git clone https://github.com/mmagnemyr/martes_setup.git ~/martes_setup; else cd ~/martes_setup && git pull; fi'"
 
 REM Run setup.sh in the martes_setup folder as martes user
-wsl bash -c "sudo -u martes bash -c 'cd ~/martes_setup && bash setup.sh'"
+wsl bash -c "sudo -u martes bash -c 'cd ~/martes_setup && bash setup_new.sh'"
 
 
 REM Shut down WSL
