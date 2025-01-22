@@ -54,53 +54,55 @@
 
         <div class="section">
             <h2>2. Installera WSL 2.0 </h2>
-            <p><strong>Notera:</strong> Om du redan har WSL 2.0 installerat kan du hoppa över detta steg. <strong>Detta steg kräver administratörsrättigheter.</strong></p>
+            <p><strong>Notera:</strong> Detta steg kräver administratörsrättigheter för din Windows användare.</p>
             <ol>
-                <li>Öppna programmet <strong>Windows Terminal</strong> eller en <strong>kommand-tolk</strong> (cmd.exe) med administratörsrättigheter genom att:
+                <li>Öppna programmet <strong>Windows Terminal</strong> eller en <strong>kommandotolken</strong> (cmd.exe) med administratörsrättigheter genom att:
                     <ul>
                         <li>Sök efter "Terminal" eller "cmd" i Start-menyn.</li>
                         <li>Högerklicka på "Windows Terminal" eller "Kommandtolken" och välj <strong>Kör som administratör</strong>.</li>
                     </ul>
                 </li>
-                <li>Kör följande kommando för att installera WSL och ställa in version 2 som standard:
+                <li>Kör följande kommando för att installera <b>WSL</b> och ställa in version 2 som standard:
                     <ul>
-                        <li> om wsl inte finns sedan tidigare
-                            <pre><code>wsl --install -d Ubuntu-22.04</code></pre>
+                        <li>se till att du står i mappen där du placerade martes installationsfiler  och skriv in följande :</li>
+                        <pre><code>cd install</code></pre>
+                        <pre><code>install_wsl.bat</code></pre>
+                        
+                        <li>
+                            Följ instruktionerna på skärmen och ange ett användarnamn och ett lösenord för din linux-användare.
                         </li>
-                        <li> om wsl finns sedan tidigare
-                            <pre><code>wsl --update</code></pre>
+                        <li>
+                            När detta är klart skriver du <strong>exit</strong> och trycker på retur för att komma tillbaka till kommandotolken i windows.
+                        </li>
+                        <li>Du bör se text på slärmen ungefär som nedan exempel:
+                            <pre><code>The operation completed successfully.
+
+"Setting Ubuntu-22.04 as the default WSL distribution..."
+The operation completed successfully.
+
+"Ubuntu-22.04 is now being set up. Please complete the prompts to create a Linux username and password."
+
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+"WSL setup is complete. You are now back at the Windows command prompt."
+
+    NAME            STATE           VERSION
+* Ubuntu-22.04    Stopped         2
+    Ubuntu          Stopped         2
+</code></pre>
+                                                
+
                         </li>
                     </ul>
                 </li>
-                <li>Nu kan du behöva starta om Windows för att wsl skall börja fungera. Efter omstart  öppnar du "Kommandtolken" igen och navigerar till din <strong>martes_win</strong> mapp.</li>
-                <li>Bekräfta att WSL är korrekt installerat och använder version 2:
-                    <pre><code>wsl --set-default-version 2</code></pre>
-                </li>
-            </ol>
-        </div>
-
-        <div class="section">
-            <h2>3. Installera och verifiera Ubuntu 22.04.05 LTS (eller senare)</h2>
-            <p><strong>Notera:</strong> Om du redan har Ubuntu 22.04.05 LTS installerat kan du hoppa över detta steg.</p>
-            <ol>
-                <li>Öppna <strong>Microsoft Store</strong>.</li>
-                <li>Sök efter <strong>Ubuntu 22.04.05 LTS</strong> och klicka på <strong>Installera</strong>.</li>
-                <li>När installationen är klar, öppna ett kommandofönster och kör:
-                    <pre><code>wsl --list --verbose</code></pre>
-                    Du bör se något i stil med:
-                    <pre><code>NAME            STATE           VERSION
-    * Ubuntu-22.04  Running         2</code></pre>
-                </li>
-                <li>Starta Ubuntu genom att skriva:
-                    <pre><code>wsl</code></pre>
-                </li>
-                <li>Följ instruktionerna för att skapa ett användarnamn och lösenord för Linux-distributionen.</li>
-                <ul>
-                    <li>Tips: kom ihåg både användarnamn och lösenord. Du kommer behöva detta senare.</li>
-                </ul>
+                
+                
+                    
+                
                 <li>Nu är din Windows dator förbered för installationen av Martes.</li>
+        
             </ol>
-            
         </div>
 
         
