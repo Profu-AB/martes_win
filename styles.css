@@ -1,0 +1,54 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #fffaf1;
+    color: #333;
+}
+
+h1, h2 {
+    color: #2c3e50;
+}
+
+pre {
+    background-color: transparent;
+    color: #333;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+    border: 1px solid #ddd;
+}
+
+code {
+    font-family: Consolas, "Courier New", monospace;
+    background-color: #f1f1f1;
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+.section {
+    margin: 20px;
+}
+
+.sticky-header {
+    position: sticky;
+    top: 0;
+    background-color: #fffaf1;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    /*box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);*/
+    z-index: 1000;
+}
+
+.sticky-header img {
+    height: 40px;
+    margin-right: 20px;
+}
+
+.sticky-header h1 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #2c3e50;
+}

@@ -1,184 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Installationsinstruktioner för Martes</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 20px;
-            background-color: #f9f9f9;
-            color: #333;
-        }
-        h1, h2 {
-            color: #2c3e50;
-        }
-        pre {
-            background-color: transparent;
-            color: #333;
-            padding: 10px;
-            border-radius: 5px;
-            overflow-x: auto;
-            border: 1px solid #ddd;
-        }
-        code {
-            font-family: Consolas, "Courier New", monospace;
-            background-color: #f1f1f1;
-            padding: 2px 4px;
-            border-radius: 3px;
-        }
-        .section {
-            margin-bottom: 20px;
-        }
-    </style>
-</head>
-<body>
-    <h1>Installationsinstruktioner för Martes</h1>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Martes</title>
+        <link rel="stylesheet" href="styles.css">
+      
+    </head>
+    <body>
+        
+        <div class="sticky-header">
+            <img src="profu.png" alt="Profu Logo">
+            <h1>Martes</h1>
+        </div>
 
-    <div style="width: 100px; height: 100px; overflow: hidden; border-radius: 50%; background-color:#f39200; display: flex; align-items: center; justify-content: center;">
-        <img src="martes_logo.png"
-             alt="Martes Logo"
-             style="width: 100%; height: 100%; object-fit: cover;">
-    </div>
+        <div class="section">
+                <div>
+                    <p><a href="install.html" class="button">Installationsinstruktioner</a>    </p>
+                    <p></p><a href="martes.html" class="button">Martes</a>    </p>
+                </div>   
+        </div>    
 
-    <div style="width: 100px; height: 100px; overflow: hidden; border-radius: 50%; background-color:#f39200;    display: flex; align-items: center; justify-content: center;">
-        <img src="profu.png"
-             alt="Profu Logo"
-             style="width: 80%; height: 80%; ">
-    </div>
-
-    <div class="section">
-        <h2>1. Kontrollera systemkraven</h2>
-        <ul>
-            <li><strong>Operativsystem:</strong> Windows 10 (build 19041 eller senare) eller Windows 11</li>
-            <li><strong>Behörigheter:</strong> Temporär tillgång till administratörsrättigheter kan krävas</li>
-            <li><strong>Förberedelser:</strong>
-                <ul>
-                    <li>WSL 2.0 (Windows Subsystem for Linux 2.0)</li>
-                    <ul>
-                        
-                        
-                        <li>Martes består av 3 st sk Docker-images, vilka kommer att hanteras och köras i WSL (linux).</li>
-                    
-                    </ul>
-                    <li>Ubuntu 22.04.05 LTS eller senare (från Microsoft Store)</li>
-                    <ul>
-                        <li>Ubuntu är en populär Linux-distribution som, när den används med WSL, möjliggör en fullfjädrad Linux-miljö direkt i Windows.</li>
-                    </ul>
-                    <li>Git för Windows (versionshantering)</li>
-                    <ul>
-                        
-                        
-                            <li>Git används för att ladda ner de filer du behöver för att installera och starta Martes på din dator.</li>
-                        
-                    </ul>
-                    <li>En webläsare av senaste version. Vi har testat med Chrome och Edge.</li>
-                </ul>
-            </li>
-        </ul>
-
-        <p><strong>Tips</strong>: Så här kontrollerar du din Windows Version:</p>
-        <ul>
-            <li>Tryck på Win + R för att öppna dialogrutan Kör.</li>
-            <li>Skriv winver och tryck på Enter.</li>
-            <li>Kör du Windows 10 kontrollera att att <strong>OS Build</strong> är minst 19041.</li>
-        </ul>
-    </div>
-
-    <div class="section">
-        <h2>2. Installera WSL 2.0 </h2>
-        <p><strong>Notera:</strong> Om du redan har WSL 2.0 installerat kan du hoppa över detta steg. <strong>Detta steg kräver administratörsrättigheter.</strong></p>
-        <ol>
-            <li>Öppna programmet <strong>Windows Terminal</strong> med administratörsrättigheter genom att:
-                <ul>
-                    <li>Söka efter "Terminal" i Start-menyn.</li>
-                    <li>Högerklicka på "Windows Terminal" och välja <strong>Kör som administratör</strong>.</li>
-                </ul>
-            </li>
-            <li>Kör följande kommando för att installera WSL och ställa in version 2 som standard:
-                <pre><code>wsl --install</code></pre>
-            </li>
-            <li>Bekräfta att WSL är korrekt installerat och använder version 2:
-                <pre><code>wsl --set-default-version 2</code></pre>
-            </li>
-        </ol>
-    </div>
-
-    <div class="section">
-        <h2>3. Installera och verifiera Ubuntu 22.04.05 LTS (eller senare)</h2>
-        <p><strong>Notera:</strong> Om du redan har Ubuntu 22.04.05 LTS installerat kan du hoppa över detta steg.</p>
-        <ol>
-            <li>Öppna <strong>Microsoft Store</strong>.</li>
-            <li>Sök efter <strong>Ubuntu 22.04.05 LTS</strong> och klicka på <strong>Installera</strong>.</li>
-            <li>När installationen är klar, öppna ett kommandofönster och kör:
-                <pre><code>wsl --list --verbose</code></pre>
-                Du bör se något i stil med:
-                <pre><code>NAME            STATE           VERSION
-* Ubuntu-22.04  Running         2</code></pre>
-            </li>
-            <li>Starta Ubuntu genom att skriva:
-                <pre><code>wsl</code></pre>
-            </li>
-            <li>Följ instruktionerna för att skapa ett användarnamn och lösenord för Linux-distributionen.</li>
-        </ol>
-    </div>
-
-    <div class="section">
-        <h2>4. Installera Git i Windows</h2>
-        <p><strong>Notera:</strong> Om du redan har Git installerat kan du hoppa över detta steg.</p>
-        <ol>
-            
-            <li>Ladda ner Git från <a href="https://git-scm.com/downloads/win" target="_blank">Git for Windows ( 64-bit version of Git for Windows.)</a>.</li>
-            <ul>
-                <li>Alternativt kan du från kommando-prompten köra <pre><code>winget install --id Git.Git -e --source winget</code></pre>. (kräver administratörsrättigheter)</li>
-                <li>Om du använder winget kommer senaste version av git att laddas ner och installationsprogrammet kommer startas automastiskt.</li>
-                <li><strong>Tips:</strong> Finns inte <strong>winget</strong> på din dator kan du installera <strong>App Installer</strong> från Microsoft Store <a href="https://apps.microsoft.com/detail/9nblggh4nns1?hl=en-US&gl=SE">här</a>.</li>
-            </ul>
-            
-            <li>Kör installationsprogrammet och följ anvisningarna (välj standardinställningar om du är osäker).</li>
-            <li>Kontrollera installationen:
-                <pre><code>git --version</code></pre>
-                Om en version visas (t.ex. <code>git version 2.x.x</code>) är Git korrekt installerat.
-            </li>
-        </ol>
-    </div>
-
-    <div class="section">
-        <h2>5. Installera Martes på Windows</h2>
-        <ol>
-            <li>Öppna programmet <strong>Windows Terminal</strong> (sök efter "Terminal" i Start-menyn).</li>
-            <li>Gå till en mapp där du vill installera Martes, t.ex. <code>C:\</code>:
-                <pre><code>cd C:\</code></pre>
-            </li>
-            <li>Kör följande kommando för att klona Martes-repositoriet:
-                <pre><code>git clone https://github.com/mmagnemyr/martes_win.git</code></pre>
-            </li>
-            <li>Navigera till mappen martes_win:
-                <pre><code>cd martes_win</code></pre>
-            </li>
-            <li>Gå till installationsmappen:
-                <pre><code>cd install</code></pre>
-            </li>
-            <li>Kör installationsfilen:
-                <pre><code>install.bat</code></pre>
-                <ul>
-                    <li>OBS! Om ditt terminal förster inleder prompten med <strong>PS</strong> betyder det att du har öppnat en PopwerShell-terminal. Då måste du skriva <strong> &.\</strong innan namnet på bat-fieln.</li>
-                    <ul>
-                        <pre><code>&.\install.bat</code></pre>
-                    </ul>
-                </ul>
-            </li>
-            <li>Följ instruktionerna under körningen av <code>install.bat</code> för att slutföra installationen.</li>
-            <li>Kontrollera installationen</li>
-            <ul>
-                <li>Öppna din webbläsare och navigera till <code>http://localhost:3000</code>. Om Martes visas korrekt är installationen klar.</li>
-                <li>Du kan också testa adressen http://localhost:8000. Detta är simuleringsdelen av Martes. Det bör visas en sida här. Klickar du på texten Martes så slå gärna på ljudet på din dator först!</li>
-                <li>Om du har Mongodb Compass installerat i Windows kan du prova att öppna Martes databasen genom att ansluta till port 27018</li>
-                <li>Om dessa länkar inte fungerar prova att köra filen \start\start.bat för att starta upp Martes i WSL.</li>
-            </ul>
-        </ol>
-    </div>
-</body>
-</html>
+       
+    </body>
+    </html>
