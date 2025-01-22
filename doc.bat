@@ -1,2 +1,2 @@
 @echo off
-start "" "C:\martes_win\install.html"
+start "" "index.html"
