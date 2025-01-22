@@ -59,20 +59,20 @@
                 <li>Öppna programmet <strong>Windows Terminal</strong> eller en <strong>kommand-tolk</strong> (cmd.exe) med administratörsrättigheter genom att:
                     <ul>
                         <li>Sök efter "Terminal" eller "cmd" i Start-menyn.</li>
-                        <li>Högerklicka på "Windows Terminal" eller "Kommand-Tolk" och välj <strong>Kör som administratör</strong>.</li>
+                        <li>Högerklicka på "Windows Terminal" eller "Kommandtolken" och välj <strong>Kör som administratör</strong>.</li>
                     </ul>
                 </li>
                 <li>Kör följande kommando för att installera WSL och ställa in version 2 som standard:
                     <ul>
                         <li> om wsl inte finns sedan tidigare
-                            <pre><code>wsl --install</code></pre>
+                            <pre><code>wsl --install -d Ubuntu-22.04</code></pre>
                         </li>
                         <li> om wsl finns sedan tidigare
                             <pre><code>wsl --update</code></pre>
                         </li>
                     </ul>
                 </li>
-                <li>Nu kan du behöva starta om Windows för att wsl skall börja fungera. Efter omstart  öppnar du en kommand-tolk igen och navigerar till din <strong>martes_win</strong> mapp.</li>
+                <li>Nu kan du behöva starta om Windows för att wsl skall börja fungera. Efter omstart  öppnar du "Kommandtolken" igen och navigerar till din <strong>martes_win</strong> mapp.</li>
                 <li>Bekräfta att WSL är korrekt installerat och använder version 2:
                     <pre><code>wsl --set-default-version 2</code></pre>
                 </li>
