@@ -17,7 +17,7 @@ if "%MARTES_REMOTE_HOME%"=="" (
 
 
 REM Run docker-compose
-wsl docker-compose -f "%MARTES_REMOTE_HOME%/docker-compose.yaml" down
+wsl docker compose -f "%MARTES_REMOTE_HOME%/docker-compose.yaml" down
 echo Containers started.
 
 pause
