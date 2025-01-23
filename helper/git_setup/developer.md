@@ -7,6 +7,7 @@ cat ~/.ssh/id_rsa.pub
 
 ## add ssh key to github
     - https://github.com/settings/keys
+    - this step includes uploading (pasting) your ssh key in git 
 
 ## back in linux again
 ssh -T git@github.com
@@ -19,10 +20,10 @@ ssh -T git@github.com
 git config --global url."git@github.com:".insteadOf "https://github.com/"
 
 
-## docker
+## setup docker
 docker login
 
-## firebase
+## setup firebase
 firebase login
 
 ## source code
@@ -30,7 +31,7 @@ git clone https://github.com/mmagnemyr/martes.git
 
 ## start dev
 - cd \home\username\martes\docker\dev
-- make sure home.sh sets env variable MARTES_HOME to root folder for the source code
+- make sure home.sh sets env variable MARTES_HOME to root folder for the source code (open with nano or just cat ./home.sh)
 - run the script
 -   ./home.sh
 
@@ -53,3 +54,7 @@ git clone https://github.com/mmagnemyr/martes.git
 
 ### stop the dev containers
 - ./down.sh
+
+
+# tips
+stop the production containers if you do not need them during development to save memory!
