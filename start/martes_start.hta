@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Martes Start</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <HTA:APPLICATION
+        ID="MartesStart"
+        APPLICATIONNAME="Martes Start"
+        BORDER="thick"
+        BORDERSTYLE="complex"
+        CAPTION="yes"
+        SHOWINTASKBAR="yes"
+        SINGLEINSTANCE="yes"
+        SYSMENU="yes"
+        SCROLL="no"
+        WINDOWSTATE="normal"
+    />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #fffaf1;
+            color: #333;
+        }
+
+        .sticky-header {
+            position: sticky;
+            width: 100vh;
+            top: 0;
+            background-color: #fffaf1;
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            /*box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);*/
+            z-index: 1000;
+        }
+
+        .sticky-header img, .sticky-header h1 {
+            display: inline-block;
+            vertical-align: middle;
+            background-color: navy;
+        }
+
+        .sticky-header img {
+            height: 40px;
+            margin-right: 20px;
+        }
+
+        .sticky-header h1 {
+            margin: 0;
+            font-size: 1.5em;
+            color: #2c3e50;
+            
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+        background-color: #fffaf1;
+            
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .field {
+            margin-bottom: 15px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-right: 10px;
+            font-size: 14px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #runButton {
+            background-color: #28a745;
+            color: #fff;
+        }
+        #exitButton {
+            background-color: #dc3545;
+            color: #fff;
+        }
+        #status {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #e9ecef;
+            border-radius: 4px;
+            display: none;
+            white-space: pre-wrap;
+        }
+    </style>
+    <script type="text/javascript">
+        function runBatch(batchFileName) {
+            var statusDiv = document.getElementById('status');
+            
+            statusDiv.style.display = "none";
+            statusDiv.innerHTML = "";
+
+            if (batchFileName === "") {
+                alert("Batch file name is empty.");
+                return;
+            }
+
+            if (batchFileName.toLowerCase().indexOf(".bat") === -1) {
+                alert("Please enter a valid batch file name with a .bat extension.");
+                return;
+            }
+
+            try {
+                var fso = new ActiveXObject("Scripting.FileSystemObject");
+                var scriptFullPath = fso.GetAbsolutePathName(".");
+                var batchFilePath = fso.BuildPath(scriptFullPath, batchFileName);
+
+                if (!fso.FileExists(batchFilePath)) {
+                    alert("Batch file not found: " + batchFilePath);
+                    return;
+                }
+
+                statusDiv.style.display = "block";
+                statusDiv.innerHTML = "Executing " + batchFileName + "...";
+
+                var shell = new ActiveXObject("WScript.Shell");
+                shell.Run('"' + batchFilePath + '"', 1, false);
+
+                statusDiv.innerHTML += "\nBatch file executed successfully.";
+            } catch (e) {
+                statusDiv.style.display = "block";
+                statusDiv.innerHTML = "Error executing batch file: " + e.message;
+                alert("Error executing batch file: " + e.message);
+            }
+        }
+
+        function exitApp() {
+            window.close();
+        }
+    </script>
+</head>
+<body>
+    
+    <div class="container">
+        <h2>Martes Start</h2>
+        <div class="field">
+            <button id="runButton" onclick="runBatch('start.bat')">Starta Martes</button>
+            <button id="runButton" onclick="runBatch('stop.bat')">Stäng av Martes</button>
+        </div>
+
+        <div class="field">
+            <button id="exitButton" onclick="exitApp()">Avsluta</button>
+        </div>
+        
+        <div id="status"></div>
+
+    </div>
+</body>
+</html>
