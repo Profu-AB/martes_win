@@ -22,5 +22,34 @@ git config --global url."git@github.com:".insteadOf "https://github.com/"
 ## docker
 docker login
 
+## firebase
+firebase login
 
+## source code
+git clone https://github.com/mmagnemyr/martes.git
 
+## start dev
+- cd \home\username\martes\docker\dev
+- make sure home.sh sets env variable MARTES_HOME to root folder for the source code
+- run the script
+-   ./home.sh
+
+### run the dev containers
+- ./up.sh
+- the frontend container (angular) mounts (volume) folder app to the frontend folder in MARTES_HOME (/martes/frontend)
+    - so just go to \martes\frontend and start code . to start develop
+    - if you need to bash into the container use
+        - ./docker_bash.sh
+            - here you can i.e build the code with ng build --configuration web
+            - then you can exit the bash with exit and do a firebase deploy to the web if you want to
+
+- the backend container (python) mounts (volume) app to the backend folder in MARTES_HOME (/martes/backend/app)
+    - so just go to \martes\backend\app and start code . to start develop
+    - if you need to bash into the container use ./martes/backend/docker_bash.sh
+    - output logs from the flask app can be seen herer ./martes/backend/
+
+### build new versions of the dev containers
+- ./build.sh
+
+### stop the dev containers
+- ./down.sh

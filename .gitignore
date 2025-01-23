@@ -12,5 +12,10 @@ msaccess/
 mongo_backup/
 */mongo_backup/
 **/mongo_backup/
+
+backup/
+*/backup/
+**/backup/
+
 .vscode/
 */.vscode/

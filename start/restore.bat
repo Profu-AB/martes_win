@@ -1,3 +1,4 @@
+@echo off
 echo Martes Restore
 
 REM Load environment variables from .env file
