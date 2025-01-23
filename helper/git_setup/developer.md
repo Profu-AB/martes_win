@@ -1,5 +1,8 @@
 ## setting up git in linux
 
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+
 ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_rsa
