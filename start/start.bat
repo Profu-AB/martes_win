@@ -14,10 +14,12 @@ if "%MARTES_REMOTE_HOME%"=="" (
     exit /b
 )
 
-wsl --exec dbus-launch true
+call start_wsl.bat
 wsl docker compose -f  "%MARTES_REMOTE_HOME%/docker-compose.yaml" up -d
 echo Containers started.
 
 
 start http://localhost:3000
 
+
+REM done
