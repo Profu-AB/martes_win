@@ -47,10 +47,8 @@ REM Add a one-time auto-exit command
 wsl -d Ubuntu-22.04 -u root bash -c "echo 'exit 0' >> /etc/bash.bashrc"
 
 REM Start WSL for user setup
-wsl -d Ubuntu-22.04
+wsl -d Ubuntu-22.04 bash -c "echo 'running initial setup...' && exit"
 
-REM Remove the auto-exit command after first login
-wsl -d Ubuntu-22.04 -u root bash -c "sed -i '/exit 0/d' /etc/bash.bashrc"
 
 REM Inform the user and return to the command prompt
 echo.
@@ -61,5 +59,10 @@ echo.
 
 wsl --shutdown
 wsl --list --verbose
+
+REM Remove the auto-exit command after first login
+wsl -d Ubuntu-22.04 -u root bash -c "sed -i '/exit 0/d' /etc/bash.bashrc"
+
+
 
 exit /b

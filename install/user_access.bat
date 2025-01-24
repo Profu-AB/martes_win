@@ -15,5 +15,5 @@ echo WSL Path: %WSL_PATH%
 REM Execute the WSL script in the converted directory
 wsl bash -c "cd '%WSL_PATH%' && ./user_access.sh"
 
-REM Pause to view any output or errors
-pause
+
+cd ..\start

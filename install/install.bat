@@ -16,3 +16,7 @@ wsl bash -c "sudo -u martes bash -c 'if [ ! -d ~/martes_setup ]; then git clone 
 REM Run setup.sh in the martes_setup folder as martes user
 wsl bash -c "sudo -u martes bash -c 'cd ~/martes_setup && bash setup_new.sh'"
 
+
+call user_access.bat
+
+echo "Done, Martes should now be ready!"
