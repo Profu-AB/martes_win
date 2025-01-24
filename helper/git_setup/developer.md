@@ -72,3 +72,16 @@ stop the production containers if you do not need them during development to sav
  
  - souce code for the app (frontend and backend)
     - https://github.com/mmagnemyr/martes.git
+
+
+# notes
+## dos2unix tool
+sudo apt install dos2unix
+
+## git add .gitattributes
+touch .gitattributes
+nano .gitattributes
+    install/user_access.sh text eol=lf
+git add .gitattributes
+git commit -m "Add .gitattributes to enforce LF for install/user_access.sh"
+git push
