@@ -17,8 +17,6 @@ if "%MARTES_REMOTE_HOME%"=="" (
 REM Print the value of MARTES_REMOTE_HOME
 echo MARTES_REMOTE_HOME=%MARTES_REMOTE_HOME%
 
-
-wsl --list --verbose
 wsl docker ps
 
 
