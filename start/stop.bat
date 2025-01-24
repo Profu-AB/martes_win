@@ -1,5 +1,5 @@
 @echo off
-echo Stänger Martes...
+echo Shutting down...
 
 REM Load environment variables from .env file
 setlocal enabledelayedexpansion
