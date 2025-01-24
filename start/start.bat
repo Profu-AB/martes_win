@@ -14,7 +14,7 @@ if "%MARTES_REMOTE_HOME%"=="" (
     exit /b
 )
 
-wsl -d Ubuntu-22.04 -e bash -ic "sudo service ssh start & disown"
+wsl --exec dbus-launch true
 wsl docker compose -f  "%MARTES_REMOTE_HOME%/docker-compose.yaml" up -d
 echo Containers started.
 
