@@ -19,4 +19,8 @@ wsl bash -c "sudo -u martes bash -c 'cd ~/martes_setup && bash setup_new.sh'"
 
 call user_access.bat
 
+cd ..\start\
+
+call check.bat
+
 echo "Done, Martes should now be ready!"
