@@ -61,3 +61,14 @@ git clone https://github.com/mmagnemyr/martes.git
 
 # tips
 stop the production containers if you do not need them during development to save memory!
+
+
+# repositories
+ - files for windows 
+    - https://github.com/mmagnemyr/martes_win.git
+ 
+ - installation files for linux
+    - https://github.com/mmagnemyr/martes_setup.git
+ 
+ - souce code for the app (frontend and backend)
+    - https://github.com/mmagnemyr/martes.git
