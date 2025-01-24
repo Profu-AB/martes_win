@@ -28,3 +28,4 @@ sudo setfacl -R -m u:$CURRENT_USER:rwx $MARTES_HOME # Add ACL to ensure access f
 sudo setfacl -R -d -m u:$CURRENT_USER:rwx $MARTES_HOME # Set default ACL for new files
 echo "restart docker service"
 sudo service docker restart
+echo "martes installation complete!"
