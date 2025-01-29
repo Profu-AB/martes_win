@@ -1,5 +1,5 @@
 @echo off
-echo Martes Restore
+echo Martes Update
 
 REM Load environment variables from .env file
 setlocal enabledelayedexpansion
@@ -17,7 +17,11 @@ if "%MARTES_REMOTE_HOME%"=="" (
 REM Debug: Print the value of MARTES_REMOTE_HOME
 echo MARTES_REMOTE_HOME is set to: %MARTES_REMOTE_HOME%
 
-REM Change to the directory containing update.sh and docker-compose.yml
-wsl bash -c "cd '%MARTES_REMOTE_HOME%' && sh update.sh"
+echo "update scource with git pull"
+REM Ensure the path is quoted if it has spaces
+wsl bash -c "cd \"${MARTES_REMOTE_HOME}\" && git pull"
 
+REM Change to the directory containing update.sh and docker-compose.yml
+
+wsl bash -c "cd \"${MARTES_REMOTE_HOME}\" && sh update.sh"
 pause
