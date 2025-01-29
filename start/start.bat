@@ -19,7 +19,7 @@ wsl docker compose -f  "%MARTES_REMOTE_HOME%/docker-compose.yaml" up -d
 echo Containers started.
 
 
-start http://localhost:3000
+start http://localhost
 
 
 REM done
