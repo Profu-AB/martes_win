@@ -5,8 +5,10 @@ REM ===========================
 REM Load Environment Variables from .env File
 REM ===========================
 
+set "ENV_FILE=%~dp0..\env"
+
 REM Read .env file and extract variables
-for /f "tokens=1,2 delims==" %%a in ('findstr /r "^[^#]" .env') do (
+for /f "tokens=1,2 delims==" %%a in ('findstr /r "^[^#]" "%ENV_FILE%"') do (
     if "%%a"=="MARTES_REMOTE_HOME" set "MARTES_REMOTE_HOME=%%b"
     if "%%a"=="DISTRO_NAME" set "DISTRO_NAME=%%b"
 )

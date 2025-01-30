@@ -2,8 +2,15 @@
 setlocal enabledelayedexpansion
 
 REM Define variables for easier maintenance
-set "DISTRO_DEFAULT_NAME=Ubuntu-22.04"
-set "DISTRO_NEW_NAME=Ubuntu-22.04-Profu"
+
+set "ENV_FILE=%~dp0..\env"
+REM Read .env file and extract variables
+for /f "tokens=1,2 delims==" %%a in ('findstr /r "^[^#]" "%ENV_FILE%"') do (
+    if "%%a"=="MARTES_REMOTE_HOME" set "MARTES_REMOTE_HOME=%%b"
+    if "%%a"=="DISTRO_NAME" set "DISTRO_NEW_NAME=%%b"
+    if "%%a"=="DISTRO_DEFAULT_NAME" set "DISTRO_DEFAULT_NAME=%%b"
+)
+
 
 REM Function to display error and exit
 :exit_with_error

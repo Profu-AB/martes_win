@@ -1,8 +1,13 @@
 @echo off
 echo Kontrollerar Martes Containers...
 
-REM Define the WSL distribution name
-set "DISTRO_NAME=Ubuntu-22.04-Profu"
+set "ENV_FILE=%~dp0..\env"
+
+REM Read .env file and extract variables
+for /f "tokens=1,2 delims==" %%a in ('findstr /r "^[^#]" "%ENV_FILE%"') do (
+    if "%%a"=="MARTES_REMOTE_HOME" set "MARTES_REMOTE_HOME=%%b"
+    if "%%a"=="DISTRO_NAME" set "DISTRO_NAME=%%b"
+)
 
 REM Load environment variables from .env file
 setlocal enabledelayedexpansion
