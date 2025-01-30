@@ -12,21 +12,6 @@ for /f "tokens=1,2 delims==" %%a in ('findstr /r "^[^#]" "%ENV_FILE%"') do (
 )
 
 
-REM Function to display error and exit
-:exit_with_error
-echo %~1
-pause
-exit /b 1
-
-REM Check if the script is running with administrative privileges
-net session >nul 2>&1
-if %errorlevel% neq 0 (
-    echo This script must be run as an administrator.
-    echo Please right-click the script and select "Run as administrator".
-    pause
-    exit /b
-)
-
 REM Check if WSL is installed
 wsl --version >nul 2>&1
 if %errorlevel% neq 0 (
