@@ -1,6 +1,9 @@
 @echo off
 echo Martes Restore
 
+REM Define the WSL distribution name
+set "DISTRO_NAME=Ubuntu-22.04-Profu"
+
 REM Load environment variables from .env file
 setlocal enabledelayedexpansion
 for /f "tokens=1,2 delims==" %%a in ('type .env') do (
@@ -29,5 +32,5 @@ REM Debug: Print the value of PARENT_PATH
 echo PARENT_PATH is set to: %PARENT_PATH%
 
 REM Run the restore script
-wsl sh "%MARTES_REMOTE_HOME%/restore_dev.sh" "%PARENT_PATH%"
+wsl  -d "%DISTRO_NAME%"  sh "%MARTES_REMOTE_HOME%/restore_dev.sh" "%PARENT_PATH%"
 pause

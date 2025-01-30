@@ -1,6 +1,9 @@
 @echo off
 echo Martes Import Access
 
+REM Define the WSL distribution name
+set "DISTRO_NAME=Ubuntu-22.04-Profu"
+
 REM Load environment variables from .env file
 setlocal enabledelayedexpansion
 for /f "tokens=1,2 delims==" %%a in ('type .env') do (

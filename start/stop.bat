@@ -1,6 +1,8 @@
 @echo off
 echo Shutting down...
 
+set "DISTRO_NAME=Ubuntu-22.04-Profu"
+
 REM Load environment variables from .env file
 setlocal enabledelayedexpansion
 for /f "tokens=1,2 delims==" %%a in ('type .env') do (
@@ -17,7 +19,9 @@ if "%MARTES_REMOTE_HOME%"=="" (
 
 
 REM Run docker-compose
-wsl docker compose -f "%MARTES_REMOTE_HOME%/docker-compose.yaml" down
-echo Containers started.
+
+wsl -d "%DISTRO_NAME%" docker compose -f "%MARTES_REMOTE_HOME%/docker-compose.yaml" down
+
+echo Containers stoped.
 
 pause

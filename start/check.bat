@@ -1,6 +1,9 @@
 @echo off
 echo Kontrollerar Martes Containers...
 
+REM Define the WSL distribution name
+set "DISTRO_NAME=Ubuntu-22.04-Profu"
+
 REM Load environment variables from .env file
 setlocal enabledelayedexpansion
 for /f "tokens=1,2 delims==" %%a in ('type .env') do (
@@ -17,9 +20,6 @@ if "%MARTES_REMOTE_HOME%"=="" (
 REM Print the value of MARTES_REMOTE_HOME
 echo MARTES_REMOTE_HOME=%MARTES_REMOTE_HOME%
 
-wsl docker ps
-
-
-
+wsl  -d "%DISTRO_NAME%" docker ps
 
 pause

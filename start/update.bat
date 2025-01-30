@@ -1,6 +1,8 @@
 @echo off
 echo Martes Update
 
+set "DISTRO_NAME=Ubuntu-22.04-Profu"
+
 REM Load environment variables from .env file
 setlocal enabledelayedexpansion
 for /f "tokens=1,2 delims==" %%a in ('type .env') do (
@@ -26,5 +28,7 @@ echo "MARTES_REMOTE_HOME: %MARTES_REMOTE_HOME%"
 wsl bash -c "echo 'Current directory:' && cd \"${MARTES_REMOTE_HOME}\" && pwd && ls"
 
 
-wsl bash -c "cd '%MARTES_REMOTE_HOME%' && sh update.sh"
+REM wsl bash -c "cd '%MARTES_REMOTE_HOME%' && sh update.sh"
+wsl -d "%DISTRO_NAME%" bash -c "cd '%MARTES_REMOTE_HOME%' && sh update.sh"
+
 pause
