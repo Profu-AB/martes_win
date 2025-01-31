@@ -1,29 +1,12 @@
 @echo off
-echo Shutting down...
-
-set "DISTRO_NAME=Ubuntu-22.04-Profu"
-
-REM Load environment variables from .env file
-setlocal enabledelayedexpansion
-for /f "tokens=1,2 delims==" %%a in ('type .env') do (
+chcp 65001 >nul
+set "ENV_FILE=%~dp0..\.env"
+for /f "tokens=1,2 delims==" %%a in ('findstr /r "^[^#]" "%ENV_FILE%"') do (
     if "%%a"=="MARTES_REMOTE_HOME" set "MARTES_REMOTE_HOME=%%b"
+    if "%%a"=="DISTRO_NAME" set "DISTRO_NAME=%%b"
 )
 
-REM Kontrollera om variabeln är satt
-if "%MARTES_REMOTE_HOME%"=="" (
-    echo MARTES_REMOTE_HOME är inte satt. Kontrollera .env-filen.
-    pause
-    exit /b
-)
+wsl -d %DISTRO_NAME% docker compose -f "%MARTES_REMOTE_HOME%/docker-compose.yaml" down
 
+call stop_wsl.bat
 
-
-REM Run docker-compose
-
-
-wsl -d "%DISTRO_NAME%" docker compose -f "%MARTES_REMOTE_HOME%/docker-compose.yaml" down
-
-
-echo Containers stoped.
-
-pause

@@ -1,20 +1,9 @@
 @echo off
-echo Martes Import Access
-
-REM Define the WSL distribution name
-set "DISTRO_NAME=Ubuntu-22.04-Profu"
-
-REM Load environment variables from .env file
-setlocal enabledelayedexpansion
-for /f "tokens=1,2 delims==" %%a in ('type .env') do (
+chcp 65001 >nul
+set "ENV_FILE=%~dp0..\.env"
+for /f "tokens=1,2 delims==" %%a in ('findstr /r "^[^#]" "%ENV_FILE%"') do (
     if "%%a"=="MARTES_REMOTE_HOME" set "MARTES_REMOTE_HOME=%%b"
-)
-
-REM Check if the variable is set
-if "%MARTES_REMOTE_HOME%"=="" (
-    echo MARTES_REMOTE_HOME är inte satt. Kontrollera .env-filen.
-    pause
-    exit /b
+    if "%%a"=="DISTRO_NAME" set "DISTRO_NAME=%%b"
 )
 
 REM Debug: Print the value of MARTES_REMOTE_HOME
@@ -32,6 +21,6 @@ REM Debug: Print the value of PARENT_PATH
 echo Access database path is set to: %PARENT_PATH%
 
 REM Run the import script
-wsl sh "%MARTES_REMOTE_HOME%/import_access.sh" "%PARENT_PATH%"
+wsl -d %DISTRO_NAME% sh "%MARTES_REMOTE_HOME%/import_access.sh" "%PARENT_PATH%"
 
 pause
