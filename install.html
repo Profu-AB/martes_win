@@ -18,24 +18,9 @@
             <h2>1. Kontrollera systemkraven</h2>
             <ul>
                 <li><strong>Operativsystem:</strong> Windows 10 (build 19041 eller senare) eller Windows 11</li>
+                <li><b>Ledigt diskutrymme</b>: minst 6GB utrymme kommer att krävs.</li>
                 <li><strong>Behörigheter:</strong> Temporär tillgång till administratörsrättigheter kan krävas</li>
-                <li><strong>Förberedelser:</strong>
-                    <ul>
-                        <li>WSL 2.0 (Windows Subsystem for Linux 2.0)</li>
-                        <ul>
-                            <li>Martes består av 3 st sk Docker-images, vilka kommer att hanteras och köras i WSL (linux).</li>                        
-                        </ul>
-                        <li>Ubuntu 22.04.05 LTS eller senare (från Microsoft Store)</li>
-                        <ul>
-                            <li>Ubuntu är en populär Linux-distribution som, när den används med WSL, möjliggör en fullfjädrad Linux-miljö direkt i Windows.</li>
-                        </ul>
-                        <li>Git för Windows (versionshantering)</li>
-                        <ul>
-                            <li>Git används för att ladda ner de filer du behöver för att installera och starta Martes på din dator.</li>
-                        </ul>
-                        <li>En webläsare av senaste version. Vi har testat med Chrome och Edge.</li>
-                    </ul>
-                </li>
+                
             </ul>
 
             <p><strong>Tips</strong>: Så här kontrollerar du din Windows Version:</p>
@@ -47,7 +32,7 @@
         </div>
 
         <div class="section">
-            <h2>2. Installera WSL 2.0 </h2>
+            <h2>2. Installera Martes</h2>
             <p><strong>Notera:</strong> Detta steg kräver administratörsrättigheter för din Windows användare.</p>
             <ol>
                 <li>Öppna programmet <strong>Windows Terminal</strong> eller en <strong>kommandotolken</strong> (cmd.exe) med administratörsrättigheter genom att:
@@ -56,11 +41,11 @@
                         <li>Högerklicka på "Windows Terminal" eller "Kommandtolken" och välj <strong>Kör som administratör</strong>.</li>
                     </ul>
                 </li>
-                <li>Kör följande kommando för att installera <b>WSL</b> och ställa in version 2 som standard:
+                <li>Kör följande kommando för att installera 
                     <ul>
                         <li>se till att du står i mappen där du placerade martes installationsfiler  och skriv in följande :</li>
                         <pre><code>cd install</code></pre>
-                        <pre><code>install_wsl.bat</code></pre>
+                        <pre><code>install.bat</code></pre>
                         
                         <li>
                             Följ instruktionerna på skärmen och ange ett <b>användarnamn</b> och ett <b>lösenord</b> för din linux-användare.
