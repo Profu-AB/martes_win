@@ -1,0 +1,1 @@
+wsl -d Ubuntu-Profu sh -c "cd /home/martes/martes_setup/nginx/conf.d/ && ls -l -a" 
