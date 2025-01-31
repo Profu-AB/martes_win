@@ -8,4 +8,4 @@ for /f "tokens=1,2 delims==" %%a in ('findstr /r "^[^#]" "%ENV_FILE%"') do (
 
 wsl -d %DISTRO_NAME% sh -c "git config --global --add safe.directory /home/martes/martes_setup" 
 
-wsl -d %DISTRO_NAME% sh -c "cd /home/martes/martes_setup && git pull" 
+wsl -d %DISTRO_NAME% sh -c "cd /home/martes/martes_setup && git pull --rebase" 
