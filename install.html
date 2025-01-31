@@ -56,74 +56,20 @@
                         <li>
                             När detta är klart skriver du <strong>exit</strong> och trycker på retur för att komma tillbaka till kommandotolken i windows.
                         </li>
-                        <li>Du bör se text på slärmen ungefär som nedan exempel:
-                            <pre><code>The operation completed successfully.
-
-"Setting Ubuntu-22.04 as the default WSL distribution..."
-The operation completed successfully.
-
-"Ubuntu-22.04 is now being set up. Please complete the prompts to create a Linux username and password."
-
-To run a command as administrator (user "root"), use "sudo <command>".
-See "man sudo_root" for details.
-
-"WSL setup is complete. You are now back at the Windows command prompt."
-
-    NAME            STATE           VERSION
-* Ubuntu-22.04    Stopped         2
-    Ubuntu          Stopped         2
-</code></pre>
-                                                
-
-                        </li>
                     </ul>
                 </li>
                 
-                <li>Om detta var första gången WSL installerades på din dator så behöver du nu <b>starta om Windows</b>.</li>
+                <li>Om instruktiner kommer om att Du behöver starta om din dator så gör du det.</li>
                     <ul>
-                        <li>Efter återstart fortsätter du med nästa steg</li>
+                        <li>Efter återstart går du återigen till start mappen och kör samma script <b>install.bat</b> igen.</li>
                     </ul>
-                <li>Nu är din Windows dator förbered för installationen av Martes.</li>
+                <li>Nu är installationen klar!</li>
         
             </ol>
         </div>
 
         
 
-        <div class="section">
-            <h2>4. Installera Martes på Windows</h2>
-            <ol>
-                <li>Öppna <strong>kommandotolken</strong> eller <strong>Windows Terminal</strong> (sök efter "Terminal" i Start-menyn).</li>
-               
-                <li>Navigera till mappen martes_win:
-                    <pre><code>cd martes_win</code></pre>
-                </li>
-                <li>Gå till installationsmappen:
-                    <pre><code>cd install</code></pre>
-                </li>
-                <li>Kör installationsfilen:
-                    <pre><code>install.bat</code></pre>
-                    <ul>
-                        <li>OBS! Om ditt terminal-förster inleder prompten med <strong>PS</strong> betyder det att du har öppnat en PopwerShell-terminal. Då måste du skriva <strong> &.\</strong innan namnet på bat-fieln.</li>
-                        <ul>
-                            <pre><code>&.\install.bat</code></pre>
-                        </ul>
-                    </ul>
-                </li>
-                <li>Följ instruktionerna under körningen av <code>install.bat</code> för att slutföra installationen.
-                <ul>
-                    <li>Observera att en del av stegen som genomförs kan ta en liten stund. Avbryt helst inte installationen utan låt den gå klart!</li>
-                </ul>
-                </li>
-
-                <li>Kontrollera installationen</li>
-                <ul>
-                    <li>Öppna din webbläsare och navigera till <code>http://localhost:3000</code>. Om Martes visas korrekt är installationen klar.</li>
-                    <li>Du kan också testa adressen http://localhost:8000. Detta är simuleringsdelen av Martes. Det bör visas en sida här. Klickar du på texten Martes så slå gärna på ljudet på din dator först!</li>
-                    <li>Om du har Mongodb Compass installerat i Windows kan du prova att öppna Martes databasen genom att ansluta till port 27018</li>
-                    <li>Om dessa länkar inte fungerar prova att köra filen \start\start.bat för att starta upp Martes i WSL.</li>
-                </ul>
-            </ol>
-        </div>
+      
     </body>
     </html>
