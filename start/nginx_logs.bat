@@ -8,4 +8,4 @@ for /f "tokens=1,2 delims==" %%a in ('findstr /r "^[^#]" "%ENV_FILE%"') do (
 
 
 
-wsl -d %DISTRO_NAME%  docker logs martes_frontend
+wsl -d %DISTRO_NAME%  docker logs martes_frontend > nginx_logs.txt
