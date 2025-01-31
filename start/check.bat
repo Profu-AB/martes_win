@@ -1,7 +1,7 @@
 @echo off
 echo Kontrollerar Martes Containers...
 
-set "ENV_FILE=%~dp0..\env"
+set "ENV_FILE=%~dp0..\.env"
 
 REM Read .env file and extract variables
 for /f "tokens=1,2 delims==" %%a in ('findstr /r "^[^#]" "%ENV_FILE%"') do (
@@ -24,7 +24,5 @@ if "%MARTES_REMOTE_HOME%"=="" (
 
 REM Print the value of MARTES_REMOTE_HOME
 echo MARTES_REMOTE_HOME=%MARTES_REMOTE_HOME%
-
-wsl  -d "%DISTRO_NAME%" docker ps
-
-pause
+echo wsl  -d %DISTRO_NAME% docker ps
+wsl  -d %DISTRO_NAME% docker ps

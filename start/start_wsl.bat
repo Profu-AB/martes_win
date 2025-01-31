@@ -1,11 +1,12 @@
-
 @echo off
-echo Starting WSL distribution "%DISTRO_NAME%" and keeping it running in the background...
-
-REM Define the WSL distribution name
-set "DISTRO_NAME=Ubuntu-22.04-Profu"
+chcp 65001 >nul
+set "ENV_FILE=%~dp0..\.env"
+for /f "tokens=1,2 delims==" %%a in ('findstr /r "^[^#]" "%ENV_FILE%"') do (
+    if "%%a"=="MARTES_REMOTE_HOME" set "MARTES_REMOTE_HOME=%%b"
+    if "%%a"=="DISTRO_NAME" set "DISTRO_NAME=%%b"
+)
 
 REM Start the WSL distribution with a persistent command to keep it running
-wsl -d "%DISTRO_NAME%" --exec dbus-launch true
+wsl -d %DISTRO_NAME% --exec dbus-launch true
 
-echo WSL distribution "%DISTRO_NAME%" is now running in the background.
+echo WSL distribution "%DISTRO_NAME%" körs nu i bakgrunden...

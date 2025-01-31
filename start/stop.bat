@@ -20,7 +20,9 @@ if "%MARTES_REMOTE_HOME%"=="" (
 
 REM Run docker-compose
 
+
 wsl -d "%DISTRO_NAME%" docker compose -f "%MARTES_REMOTE_HOME%/docker-compose.yaml" down
+
 
 echo Containers stoped.
 

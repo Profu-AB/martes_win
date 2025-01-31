@@ -1,28 +1,17 @@
 @echo off
-echo Startar Martes...
-
-REM Define the WSL distribution name
-set "DISTRO_NAME=Ubuntu-22.04-Profu"
-
-REM Load environment variables from .env file
-setlocal enabledelayedexpansion
-for /f "tokens=1,2 delims==" %%a in ('type .env') do (
+chcp 65001 >nul
+set "ENV_FILE=%~dp0..\.env"
+for /f "tokens=1,2 delims==" %%a in ('findstr /r "^[^#]" "%ENV_FILE%"') do (
     if "%%a"=="MARTES_REMOTE_HOME" set "MARTES_REMOTE_HOME=%%b"
+    if "%%a"=="DISTRO_NAME" set "DISTRO_NAME=%%b"
 )
 
-REM Kontrollera om variabeln är satt
-if "%MARTES_REMOTE_HOME%"=="" (
-    echo MARTES_REMOTE_HOME är inte satt. Kontrollera .env-filen.
-    pause
-    exit /b
-)
+
+
 
 call start_wsl.bat
-wsl  -d "%DISTRO_NAME%" docker compose -f  "%MARTES_REMOTE_HOME%/docker-compose.yaml" up -d
-echo Containers started.
+wsl  -d %DISTRO_NAME% docker compose -f  "%MARTES_REMOTE_HOME%/docker-compose.yaml" up -d
 
 
 start http://localhost
 
-
-REM done

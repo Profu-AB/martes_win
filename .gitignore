@@ -5,9 +5,12 @@ access/
 */access/
 **/access/
 
+*.vhdx
+
 msaccess/
 */msaccess/
 **/msaccess/
+
 
 mongo_backup/
 */mongo_backup/
