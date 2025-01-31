@@ -29,6 +29,7 @@ if %errorlevel% neq 0 (
 )
 
 call install_wsl_profu
+wsl --shutdown
 echo "---------------------------------------------------------"
 if exist "%WSL_TAR_PATH%" (
     del /F /Q "%WSL_TAR_PATH%"
