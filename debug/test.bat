@@ -8,6 +8,4 @@ for /f "tokens=1,2 delims==" %%a in ('findstr /r "^[^#]" "%ENV_FILE%"') do (
 
 
 
-
-
-wsl -d %DISTRO_NAME% sh -c "cd /home/martes/martes_setup/nginx/conf.d/ && chmod 664 default.conf" 
+wsl -d %DISTRO_NAME%    "/home/martes/martes_setup/update_wsl_conf.sh"

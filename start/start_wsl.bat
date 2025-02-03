@@ -7,6 +7,6 @@ for /f "tokens=1,2 delims==" %%a in ('findstr /r "^[^#]" "%ENV_FILE%"') do (
 )
 
 REM Start the WSL distribution with a persistent command to keep it running
-wsl -d %DISTRO_NAME% --exec dbus-launch true
+wsl -d Ubuntu-Profu --exec dbus-launch true
 
-echo WSL distribution "%DISTRO_NAME%" körs nu i bakgrunden...
+echo WSL distribution Ubuntu-Profu körs nu i bakgrunden...
