@@ -2,10 +2,14 @@
 chcp 65001 >nul
 setlocal EnableDelayedExpansion
 
-:: Get the current script directory dynamically
+set "ENV_FILE=%~dp0..\.env"
+for /f "tokens=1,2 delims==" %%a in ('findstr /r "^[^#]" "%ENV_FILE%"') do (
+    if "%%a"=="MARTES_REMOTE_HOME" set "MARTES_REMOTE_HOME=%%b"
+    if "%%a"=="DISTRO_NAME" set "DISTRO_NAME=%%b"
+)
+
 set "CURRENT_PATH=%~dp0"
 set "WSL_TAR_PATH=%CURRENT_PATH%ubuntu-profu.tar"
-set "WSL_NAME=Ubuntu-Profu"
 set "BASE_DISTRO=Ubuntu-22.04"
 set "FOUND=false"
 
@@ -13,10 +17,9 @@ echo Kontrollerar om %BASE_DISTRO% finns installerad...
 
 :: Read and process WSL list output correctly
 for /f "delims=" %%i in ('wsl --list --quiet ^| wsl --exec iconv -f UTF-16LE -t ASCII') do (
-    set "DISTRONAME=%%i"
+    set "WSL_NAME=%%i"
     
-    if /I "!DISTRONAME!"=="%BASE_DISTRO%" (
-        
+    if /I "!WSL_NAME!"=="%BASE_DISTRO%" (        
         set FOUND=true
     )
 )
@@ -29,4 +32,4 @@ if "!FOUND!"=="false" (
 )
 
 wsl --export "%BASE_DISTRO%" "%WSL_TAR_PATH%"
-wsl --import "%WSL_NAME%" "%CURRENT_PATH%%WSL_NAME%" "%WSL_TAR_PATH%" --version 2
+wsl --import "%DISTRO_NAME%" "%CURRENT_PATH%%DISTRO_NAME%" "%WSL_TAR_PATH%" --version 2

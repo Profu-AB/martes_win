@@ -2,27 +2,33 @@
 chcp 65001 >nul
 setlocal EnableDelayedExpansion
 
-:: Get the current script directory dynamically
+set "ENV_FILE=%~dp0..\.env"
+for /f "tokens=1,2 delims==" %%a in ('findstr /r "^[^#]" "%ENV_FILE%"') do (
+    if "%%a"=="MARTES_REMOTE_HOME" set "MARTES_REMOTE_HOME=%%b"
+    if "%%a"=="DISTRO_NAME" set "DISTRO_NAME=%%b"
+)
+
 set "CURRENT_PATH=%~dp0"
 set "WSL_TAR_PATH=%CURRENT_PATH%ubuntu-profu.tar"
-set "WSL_NAME=Ubuntu-Profu"
+
+
 set "FOUND=false"
 
 echo 📦 Installerar Martes 
-echo Kontrollerar om WSL-distributionen %WSL_NAME% redan finns installerad...
+echo Kontrollerar om WSL-distributionen %DISTRO_NAME% redan finns installerad...
 
 :: Read and process WSL list output correctly
 for /f "delims=" %%i in ('wsl --list --quiet ^| wsl --exec iconv -f UTF-16LE -t ASCII') do (
-    set "DISTRONAME=%%i"
+    set "WSL_NAME=%%i"
     
-    if /I "!DISTRONAME!"=="%WSL_NAME%" (
+    if /I "!WSL_NAME!"=="%DISTRO_NAME%" (
         set FOUND=true
     )
 )
 
 :: Check if the instance was found
 if "!FOUND!"=="false" (
-    echo "%WSL_NAME%" fanns inte sedan tidigare så vi installerar den...
+    echo "%DISTRO_NAME%" fanns inte sedan tidigare så vi installerar den...
     call install_wsl_profu_2.bat
     echo startar script i WSL distributionen....
     endlocal
