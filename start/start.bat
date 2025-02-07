@@ -10,8 +10,10 @@ for /f "tokens=1,2 delims==" %%a in ('findstr /r "^[^#]" "%ENV_FILE%"') do (
 
 
 call start_wsl.bat
-wsl  -d %DISTRO_NAME% docker compose -f  "%MARTES_REMOTE_HOME%/docker-compose.yaml" up -d
+REM wsl  -d %DISTRO_NAME% docker compose -f  "%MARTES_REMOTE_HOME%/docker-compose.yaml" up -d
 
+
+wsl -d %DISTRO_NAME% bash -c "sudo -u martes bash -c "%MARTES_REMOTE_HOME%/docker-compose.yaml" up -d"
 
 start http://localhost
 
