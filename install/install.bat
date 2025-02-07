@@ -26,7 +26,7 @@ if %errorlevel% neq 0 (
     pause
     exit /b
 )
-
+echo "install_wsl_profu"
 call install_wsl_profu
 wsl --shutdown
 echo "---------------------------------------------------------"
