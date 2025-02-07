@@ -31,5 +31,5 @@ if "!FOUND!"=="false" (
     wsl -d "%BASE_DISTRO%" --exec echo "WSL Initialized" >nul 2>&1
 )
 
-wsl --export "%BASE_DISTRO%" "%WSL_TAR_PATH%"
-wsl --import "%DISTRO_NAME%" "%CURRENT_PATH%%DISTRO_NAME%" "%WSL_TAR_PATH%" --version 2
+REM --export "%BASE_DISTRO%" "%WSL_TAR_PATH%"
+REM wsl --import "%DISTRO_NAME%" "%CURRENT_PATH%%DISTRO_NAME%" "%WSL_TAR_PATH%" --version 2
