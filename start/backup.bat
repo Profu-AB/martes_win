@@ -31,7 +31,10 @@ REM ===========================
 REM Run the Backup Script in WSL
 REM ===========================
 
-wsl -d %DISTRO_NAME% bash -c "sh '%MARTES_REMOTE_HOME%/backup.sh' '%PARENT_PATH%'"
+REM wsl -d %DISTRO_NAME% bash -c "sh '%MARTES_REMOTE_HOME%/backup.sh' '%PARENT_PATH%'"
+
+wsl -d %DISTRO_NAME% -- bash -c "sudo -u martes bash -c "sh '%MARTES_REMOTE_HOME%/backup.sh' '%PARENT_PATH%'"
+
 
 REM Check if the command was successful
 if %errorlevel% neq 0 (

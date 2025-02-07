@@ -7,5 +7,8 @@ for /f "tokens=1,2 delims==" %%a in ('findstr /r "^[^#]" "%ENV_FILE%"') do (
     if "%%a"=="DISTRO_NAME" set "DISTRO_NAME=%%b"
 )
 
-echo wsl  -d %DISTRO_NAME% docker ps
-wsl  -d %DISTRO_NAME% docker ps
+REM echo wsl  -d %DISTRO_NAME% docker ps
+REM wsl  -d %DISTRO_NAME% docker ps
+
+
+wsl -d %DISTRO_NAME% -- bash -c "sudo -u martes bash -c 'docker ps'"
