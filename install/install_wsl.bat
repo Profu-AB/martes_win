@@ -1,4 +1,7 @@
 @echo off
+
+
+
 REM Detect the current Linux username
 for /f "tokens=* delims=" %%i in ('wsl whoami') do set LINUX_USER=%%i
 echo Detected Linux user: %LINUX_USER%
