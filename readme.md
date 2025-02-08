@@ -37,3 +37,7 @@
         - nginx_conf.bat
         - nginx_logs.bat
         - restart_wsl.bat
+
+## ports
+    8080
+    8000

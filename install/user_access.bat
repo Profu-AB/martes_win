@@ -6,6 +6,6 @@ for /f "tokens=1,2 delims==" %%a in ('findstr /r "^[^#]" "%ENV_FILE%"') do (
     if "%%a"=="DISTRO_NAME" set "DISTRO_NAME=%%b"
 )
 
-wsl -d %DISTRO_NAME% bash -c "sudo -u    bash -c 'cd ~/martes_setup && bash user_access.sh'"
+wsl -d %DISTRO_NAME% bash -c "sudo -u martes bash -c 'cd ~/martes_setup && bash user_access.sh'"
 
 exit /b
