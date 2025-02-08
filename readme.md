@@ -32,6 +32,8 @@
 
 ## debug
     debug files
+        - bash.bat
+        - check_net.bat
         - check_wsl_conf.bat
         - nhinx-chomd.bat
         - nginx_conf.bat
