@@ -1,26 +1,5 @@
-## setting up git in linux
-
-git config --global user.email "martin.magnemyr@gmail.com"
-git config --global user.name "Martin Magnemyr"
-
-ssh-keygen -t rsa -b 4096 -C "martin.magnemyr@gmail.com"
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_rsa
-cat ~/.ssh/id_rsa.pub
-
-## add ssh key to github
-    - https://github.com/settings/keys
-    - this step includes uploading (pasting) your ssh key in git 
-
-## back in linux again
-ssh -T git@github.com
-
-- expected output
-    - Hi username! You've successfully authenticated, but GitHub does not provide shell access.
-
-
-## : Configure Git to Use SSH by Default
-git config --global url."git@github.com:".insteadOf "https://github.com/"
+## documentation
+    - git clone https://github.com/mmagnemyr/martes_doc.git
 
 
 ## setup docker
