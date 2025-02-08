@@ -12,7 +12,7 @@ for /f "tokens=1,2 delims==" %%a in ('findstr /r "^[^#]" "%ENV_FILE%"') do (
 
 
 :: Specify the path to your Docker Compose YAML file (modify with the actual path)
-set COMPOSE_FILE_PATH=./martes_setup/docker-compose.yaml
+set COMPOSE_FILE_PATH=./docker-compose.yaml
 
 :: Run Docker Compose in WSL
 echo Running Docker Compose in WSL...
