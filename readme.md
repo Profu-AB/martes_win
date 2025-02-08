@@ -43,3 +43,8 @@
 ## ports
     8080
     8000
+
+## developers
+    - documentation
+        - git clone https://github.com/mmagnemyr/martes_doc.git
+  
