@@ -1,0 +1,85 @@
+services:
+  mongo:
+    image: mongo:8.0 
+    container_name: martes_mongodb
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo_data:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+      - MONGO_INITDB_DATABASE=${MONGODB_AUTH_DB}
+    healthcheck:
+      test: >
+        bash -c "echo 'db.runCommand({ ping: 1 })' | mongosh admin --username ${MONGO_INITDB_ROOT_USERNAME} --password ${MONGO_INITDB_ROOT_PASSWORD} --authenticationDatabase ${MONGODB_AUTH_DB} --quiet --norc"
+      interval: 5s
+      timeout: 10s
+      retries: 3
+    networks:
+      - app_default
+
+  backend:
+    
+    image: magnemyr/martes-backend:latest
+    container_name: martes_backend
+    ports:
+      - "8000:8000"
+    environment:
+      - MONGO_HOST=mongo
+      - MONGO_PORT=27017 # internal port is always 27017
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+      - MONGO_INITDB_DATABASE=${MONGODB_AUTH_DB}
+    depends_on:
+      mongo:
+        condition: service_healthy
+    networks:
+      - app_default
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f -k http://backend:8000/getVersion || exit 1"]
+      interval: 5s
+      timeout: 10s
+      retries: 3
+
+
+  init-mongo:
+    image: magnemyr/martes-backend:latest
+    container_name: init_mongo
+    command: ["python", "./macli.py", "-action", "init", "-lk", "test"]
+    environment:
+      - MONGO_HOST=mongo
+      - MONGO_PORT=27017
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+      - MONGO_INITDB_DATABASE=${MONGODB_AUTH_DB}
+    depends_on:
+      backend:
+        condition: service_healthy
+      mongo:
+        condition: service_healthy
+    restart: "no"
+    networks:
+      - app_default
+
+
+  martes-nginx:
+    image: magnemyr/martes-nginx:latest
+    container_name: martes_frontend
+    ports:
+      - "8080:8080"  # Expose NGINX to the host on port 80  
+    volumes:
+      # Mount custom Nginx config to override the one in the image
+      - ./nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - backend
+    networks:
+      - app_default
+
+volumes:
+  mongo_data:
+    name: app_mongo_data_prod
+
+networks:
+  app_default:
+    driver: bridge

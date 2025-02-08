@@ -22,19 +22,13 @@ if %errorlevel% neq 0 (
     REM Restart the system to apply changes
     echo.
     echo Vänligen starta om  din dator för att färdigställa denna delen av installationen.
-    echo Efter omstart kör du detta script install_wsl.bat igen.
+    echo Efter omstart kör du detta script install.bat igen.
     pause
     exit /b
 )
 
-call install_wsl_profu
-wsl --shutdown
-echo "---------------------------------------------------------"
-if exist "%WSL_TAR_PATH%" (
-    del /F /Q "%WSL_TAR_PATH%"
-    echo ✅ raderer filer skapade under installationen.
-) else (
-    echo Done
-)
+call install_2.bat
+
+
 
 exit /b
