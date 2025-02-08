@@ -1,5 +1,6 @@
 #!/bin/sh
 
+
 # Update Alpine and install dependencies
 echo "Updating Alpine and installing dependencies..."
 apk update
