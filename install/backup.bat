@@ -33,7 +33,7 @@ REM ===========================
 
 REM wsl -d %DISTRO_NAME% bash -c "sh '%MARTES_REMOTE_HOME%/backup.sh' '%PARENT_PATH%'"
 
-wsl -d %DISTRO_NAME% -- bash -c "bash -c "sh '%MARTES_REMOTE_HOME%/backup.sh' '%PARENT_PATH%'"
+wsl -d %DISTRO_NAME% -- bash -c "bash -c "sh 'backup.sh' '%PARENT_PATH%'"
 
 
 REM Check if the command was successful
