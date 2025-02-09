@@ -22,7 +22,7 @@ rem Convert the parent path to a WSL-compatible path using wslpath
 for /f "delims=" %%i in ('wsl wslpath "%PARENT_PATH%"') do set WSL_PARENT_PATH=%%i
 
 rem Ensure the restore.sh script is in the correct WSL path
-set RESTORE_PATH=%WSL_PARENT_PATH%/restore.sh
+set RESTORE_PATH=%WSL_PARENT_PATH%/install/restore.sh
 
 rem Define the correct path for the backup directory (assuming it's one level up)
 set BACKUP_PATH=%WSL_PARENT_PATH%/backup
