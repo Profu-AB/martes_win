@@ -4,7 +4,7 @@
 CURRENT_PATH=$(pwd)
 
 # Print current directory and backup path
-echo "Restoring backup from: $CURRENT_PATH/../backup"
+echo "Restoring backup from: $CURRENT_PATH/backup"
 
 # Remove the existing backup directory in the container
 echo "Removing existing /restore_backup in the container"
