@@ -6,7 +6,10 @@
 
 
 ## install
-    installation bat files for martes
+    - .env
+        - setting for mongodb
+
+    - installation bat files for martes
         - install.bat
         - install_wsl_profu.bat
         - setup_wsl.bat
@@ -14,8 +17,6 @@
         - user_access.bat
         - windows_start_menu.bat
 
-
-## start
     martes start and other management tasks
         - start.bat
         - backup.bat
