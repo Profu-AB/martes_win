@@ -29,7 +29,7 @@ for /f "delims=" %%i in ('wsl --list --quiet ^| wsl --exec iconv -f UTF-16LE -t 
 :: Check if the instance was found
 if "!FOUND!"=="false" (
     echo "%DISTRO_NAME%" fanns inte sedan tidigare så vi installerar den...
-    call install_wsl_profu_2.bat
+    call install_distro_2.bat
     echo startar script i WSL distributionen....
     endlocal
     call setup_wsl.bat

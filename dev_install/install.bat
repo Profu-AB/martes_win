@@ -27,7 +27,7 @@ if %errorlevel% neq 0 (
     exit /b
 )
 
-call install_wsl_profu
+call install_distro.bat
 wsl --shutdown
 
 

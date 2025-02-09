@@ -12,7 +12,7 @@ set "CURRENT_PATH=%~dp0"
 set "BASE_DISTRO=%DISTRO_NAME%
 set "FOUND=false"
 
-echo Kontrollerar om %BASE_DISTRO% finns installerad...
+
 
 :: Read and process WSL list output correctly
 for /f "delims=" %%i in ('wsl --list --quiet ^| wsl --exec iconv -f UTF-16LE -t ASCII') do (
