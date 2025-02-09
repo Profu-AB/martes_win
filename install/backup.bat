@@ -1,49 +1,36 @@
 @echo off
 chcp 65001 >nul
 set "ENV_FILE=%~dp0..\.env"
+
+rem Read DISTRO_NAME from .env file
 for /f "tokens=1,2 delims==" %%a in ('findstr /r "^[^#]" "%ENV_FILE%"') do (
-    
     if "%%a"=="DISTRO_NAME" set "DISTRO_NAME=%%b"
 )
 
+rem Get the current directory in Windows format
+for /f "delims=" %%i in ('wsl wslpath -w "$(pwd)"') do set CURRENT_PATH=%%i
 
-echo Kör backup.sh i WSL distribution "%DISTRO_NAME%"...
+rem Move up one directory and get the parent path
+set PARENT_PATH=%~dp0..
+cd %PARENT_PATH%
+set PARENT_PATH=%cd%
 
-REM ===========================
-REM Get the Current and Parent Paths
-REM ===========================
-
-REM Get the current directory in Windows format
-for /f "delims=" %%i in ('cd') do set "CURRENT_PATH=%%i"
-
-REM Convert the current directory to WSL format
-for /f "delims=" %%i in ('wsl wslpath "%CURRENT_PATH%"') do set "WSL_CURRENT_PATH=%%i"
-
-REM Determine the parent path correctly
-set "PARENT_PATH=%~dp0\.."
-cd /d "%PARENT_PATH%"
-set "PARENT_PATH=%cd%"
-
-REM Debug: Print the value of PARENT_PATH
+rem Debug: Print the value of PARENT_PATH
 echo PARENT_PATH is set to: %PARENT_PATH%
 
-REM ===========================
-REM Run the Backup Script in WSL
-REM ===========================
+rem Convert the parent path to a WSL-compatible path using wslpath
+for /f "delims=" %%i in ('wsl wslpath "%PARENT_PATH%"') do set WSL_PARENT_PATH=%%i
 
+rem Ensure the restore.sh script is in the correct WSL path
+set RESTORE_PATH=%WSL_PARENT_PATH%/install/backup.sh
 
+rem Define the correct path for the backup directory (assuming it's one level up)
+set BACKUP_PATH=%WSL_PARENT_PATH%/backup
 
-wsl -d %DISTRO_NAME% -- bash -c "bash -c "sh './backup.sh' '%PARENT_PATH%'"
+rem Debug: Print the value of BACKUP_PATH
+echo BACKUP_PATH is set to: %BACKUP_PATH%
 
+rem Run the restore script inside the WSL distribution
+wsl -d %DISTRO_NAME% --exec bash -c "chmod +x '%RESTORE_PATH%' && '%RESTORE_PATH%' '%BACKUP_PATH%'"
 
-REM Check if the command was successful
-if %errorlevel% neq 0 (
-    echo ERROR: Failed to execute backup.sh in "%DISTRO_NAME%".
-    pause
-    exit /b 1
-)
-
-echo klart! "%DISTRO_NAME%".
 pause
-exit /b
-
