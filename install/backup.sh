@@ -10,6 +10,6 @@ docker exec martes_mongodb rm -rf /mongo_backup
 echo performs the backup
 docker exec -i martes_mongodb mongodump --username admin --password secret --authenticationDatabase admin --out ./mongo_backup
 
-echo copy the files back to windows
-docker cp martes_mongodb:./mongo_backup ./martes_data_backup
+echo copy the files back to windows backup folder
+docker cp martes_mongodb:./mongo_backup ./backup
 
