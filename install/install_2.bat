@@ -35,4 +35,5 @@ echo "%CUSTOM_NAME%" har färdigställts och finns nu i  %CURRENT_DIR%\wsl_%CUST
 echo wsl --shutodwn
 wsl --shutdown
 wsl --list -v
+call start.bat
 endlocal
