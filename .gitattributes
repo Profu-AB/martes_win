@@ -1,1 +1,7 @@
 install/user_access.sh text eol=lf
+install/setup.sh text eol=lf
+# Ensure batch files use CRLF (Windows-style)
+*.bat text eol=crlf
+
+# Ensure shell scripts use LF (Unix-style)
+*.sh text eol=lf
