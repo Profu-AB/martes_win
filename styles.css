@@ -7,8 +7,14 @@ body {
     color: #333;
 }
 
-h1, h2 {
+h1 {
     color: #2c3e50;
+    font-size: 32px;
+}
+
+h2 {
+    color: #2c3e50;
+    font-size: 20px;
 }
 
 pre {
@@ -43,8 +49,8 @@ code {
 }
 
 .sticky-header img {
-    height: 40px;
-    margin-right: 20px;
+    height: 20px;
+    margin-right: 10px;
 }
 
 .sticky-header h1 {
