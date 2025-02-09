@@ -25,7 +25,6 @@ rem Ensure the restore.sh script is in the correct WSL path
 set RESTORE_PATH=%WSL_PARENT_PATH%/install/restore.sh
 
 rem Run the restore script inside the WSL distribution
-wsl -d %DISTRO_NAME% --exec bash -c "chmod +x '%RESTORE_PATH%' 
-wsl -d %DISTRO_NAME% --exec "./restore.sh" 
+wsl -d %DISTRO_NAME% --exec bash -c "chmod +x '%RESTORE_PATH%' && '%RESTORE_PATH%'"
 
 pause
