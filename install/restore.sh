@@ -12,7 +12,7 @@ docker exec martes_mongodb rm -rf /restore_backup
 
 # Copy the backup folder to the container
 echo "Copying backup to container"
-docker cp $CURRENT_PATH/../backup martes_mongodb:/restore_backup
+docker cp $CURRENT_PATH/backup martes_mongodb:/restore_backup
 
 # Run mongorestore command inside the container
 echo "Restoring backup in MongoDB"
