@@ -2,7 +2,7 @@
 chcp 65001 >nul
 set "ENV_FILE=%~dp0..\.env"
 for /f "tokens=1,2 delims==" %%a in ('findstr /r "^[^#]" "%ENV_FILE%"') do (
-    if "%%a"=="MARTES_REMOTE_HOME" set "MARTES_REMOTE_HOME=%%b"
+    
     if "%%a"=="DISTRO_NAME" set "DISTRO_NAME=%%b"
 )
 
@@ -31,7 +31,7 @@ REM ===========================
 REM Run the Backup Script in WSL
 REM ===========================
 
-REM wsl -d %DISTRO_NAME% bash -c "sh '%MARTES_REMOTE_HOME%/backup.sh' '%PARENT_PATH%'"
+
 
 wsl -d %DISTRO_NAME% -- bash -c "bash -c "sh './backup.sh' '%PARENT_PATH%'"
 
