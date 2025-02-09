@@ -1,9 +1,9 @@
 @echo off
 chcp 65001 >nul
+setlocal EnableDelayedExpansion
 set "ENV_FILE=%~dp0..\.env"
-
-rem Read DISTRO_NAME from the .env file
 for /f "tokens=1,2 delims==" %%a in ('findstr /r "^[^#]" "%ENV_FILE%"') do (
+    
     if "%%a"=="DISTRO_NAME" set "DISTRO_NAME=%%b"
 )
 
