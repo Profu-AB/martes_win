@@ -20,6 +20,9 @@ wsl -d %DISTRO_NAME% --exec docker compose -f %COMPOSE_FILE_PATH% up -d
 
 :: Finish
 echo Docker Compose has started the services in detached mode.
+
+start http://localhost:8080
+
 endlocal
 
 
