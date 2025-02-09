@@ -2,7 +2,7 @@
 chcp 65001 >nul
 
 set "CURRENT_PATH=%~dp0"
-set "WSL_TAR_PATH=%CURRENT_PATH%ubuntu-profu.tar"
+
 
 echo 📦 Installerar WSL... 
 wsl --version >nul 2>&1

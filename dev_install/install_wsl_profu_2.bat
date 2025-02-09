@@ -5,7 +5,7 @@ setlocal EnableDelayedExpansion
 set "ENV_FILE=%~dp0..\.env"
 for /f "tokens=1,2 delims==" %%a in ('findstr /r "^[^#]" "%ENV_FILE%"') do (
     
-    if "%%a"=="DISTRO_NAME" set "DISTRO_DEFAULT_NAME=%%b"
+    if "%%a"=="DISTRO_DEFAULT_NAME" set "DISTRO_NAME=%%b"
 )
 
 set "CURRENT_PATH=%~dp0"
