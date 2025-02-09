@@ -22,6 +22,6 @@ rem Convert the parent path to a WSL-compatible path using wslpath
 for /f "delims=" %%i in ('wsl wslpath "%PARENT_PATH%"') do set WSL_PARENT_PATH=%%i
 
 rem Run the restore script inside the WSL distribution
-wsl -d %DISTRO_NAME% bash -c "sh /mnt/c/%WSL_PARENT_PATH%/install/restore.sh"
+wsl -d %DISTRO_NAME% bash -c "sh %WSL_PARENT_PATH%/install/restore.sh"
 
 pause
