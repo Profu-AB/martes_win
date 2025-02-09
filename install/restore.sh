@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-echo "Restoring backup in : backup"
+echo "Restoring backup in : ../backup"
 
 docker exec martes_mongodb rm -rf /restore_backup
 docker cp  ../backup martes_mongodb:/restore_backup
