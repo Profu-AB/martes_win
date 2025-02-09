@@ -7,7 +7,7 @@ mkdir backup
 echo remove folder mongo_backup inside container
 docker exec martes_mongodb rm -rf /mongo_backup
 
-echo performs the backup (dump)
+echo performs the backup
 docker exec -i martes_mongodb mongodump --username admin --password secret --authenticationDatabase admin --out ./mongo_backup
 
 echo copy the files back to windows
