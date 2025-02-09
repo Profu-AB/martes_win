@@ -46,3 +46,4 @@ if %errorlevel% neq 0 (
 echo klart! "%DISTRO_NAME%".
 pause
 exit /b
+
