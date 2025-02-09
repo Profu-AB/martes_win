@@ -12,3 +12,5 @@ setlocal EnableDelayedExpansion
 wsl -d %DISTRO_NAME% --exec dbus-launch true
 
 echo WSL distribution %DISTRO_NAME% körs nu i bakgrunden...
+
+
