@@ -24,6 +24,6 @@ REM Run the restore script
 REM wsl sh "%MARTES_REMOTE_HOME%/restore.sh" "%PARENT_PATH%"
 REM wsl -d %DISTRO_NAME% bash -c "sh '%MARTES_REMOTE_HOME%/restore.sh' '%PARENT_PATH%'"
 
-wsl -d %DISTRO_NAME% -- bash -c "sudo -u martes bash -c sh '%MARTES_REMOTE_HOME%/restore.sh' '%PARENT_PATH%'"
+wsl -d %DISTRO_NAME% -- bash -c "bash -c sh './restore.sh' '%PARENT_PATH%'"
 
 pause
