@@ -21,6 +21,6 @@ REM Debug: Print the value of PARENT_PATH
 echo Access database path is set to: %PARENT_PATH%
 
 REM Run the import script
-wsl -d %DISTRO_NAME% sh "%MARTES_REMOTE_HOME%/import_access.sh" "%PARENT_PATH%"
+wsl -d %DISTRO_NAME% sh "./import_access.sh" "%PARENT_PATH%"
 
 pause

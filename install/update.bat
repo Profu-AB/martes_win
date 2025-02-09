@@ -8,6 +8,6 @@ for /f "tokens=1,2 delims==" %%a in ('findstr /r "^[^#]" "%ENV_FILE%"') do (
     if "%%a"=="DISTRO_NAME" set "DISTRO_NAME=%%b"
 )
 
-wsl -d %DISTRO_NAME% bash -c "cd '%MARTES_REMOTE_HOME%' && sh update.sh"
+wsl -d %DISTRO_NAME% bash -c "sh ./update.sh"
 
 
