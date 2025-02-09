@@ -15,7 +15,22 @@
         </div>
 
         <div class="section">
-            <h2>1. Kontrollera systemkraven</h2>
+            <h2>1. Hur installeras Martes?</h2>
+            <ul>
+                <li>Martes är en klassisk webbapplikation som kommer att köras i din webbläsare.</li>
+                <li>För att kunna installera detta på din dator kommer vi att använda oss <b>Windows Subsystem for Linux</b> eller WSL.</li>
+                <li>Om WSL inte finns på din dator sedan tidigare behöver vi installera det först.</li>
+                <ul>
+                    <li>Denna installation kommer då att kräva att du kan logga in med administratörsrättigheter på din dator.</li>
+                </ul>
+                <li>Installationsprocessen för Martes kommer att kontrollera om WSL finns sedan tidigare och installera det om det inte gör det.</li>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>2. Kontrollera systemkraven</h2>
             <ul>
                 <li><strong>Operativsystem:</strong> Windows 10 (build 19041 eller senare) eller Windows 11</li>
                 <li><b>Ledigt diskutrymme</b>: minst 4GB utrymme kommer att krävs.</li>
@@ -32,8 +47,8 @@
         </div>
 
         <div class="section">
-            <h2>2. Installation</h2>
-            <p><strong>Notera:</strong> Detta steg kräver administratörsrättigheter för din Windows användare.</p>
+            <h2>3. Installation</h2>
+            
             <ol>
                 <li>Öppna programmet <strong>Windows Terminal</strong> eller en <strong>kommandotolken</strong> (cmd.exe) med administratörsrättigheter genom att:
                     <ul>
@@ -41,35 +56,28 @@
                         <li>Högerklicka på "Windows Terminal" eller "Kommandtolken" och välj <strong>Kör som administratör</strong>.</li>
                     </ul>
                 </li>
-                <li>Kör följande kommando för att installera 
+                <li>se till att du står i mappen där du placerade martes installationsfiler och skriv in följande :</li>
                     <ul>
-                        <li>se till att du står i mappen där du placerade martes installationsfiler  och skriv in följande :</li>
+                        
                         <pre><code>cd install</code></pre>
                         <pre><code>install.bat</code></pre>
                         
-                        <li>
-                            Följ instruktionerna på skärmen och ange ett <b>användarnamn</b> och ett <b>lösenord</b> för din linux-användare.
-                            <ul>
-                                <li>Kom ihåg detta lösenord. Det kan komma att efterfrågas vid ett flertal tillfällen i efterföljande steg.</li>
-                            </ul>
-                        </li>
-                        <li>
-                            När detta är klart skriver du <strong>exit</strong> och trycker på retur för att komma tillbaka till kommandotolken i windows.
-                        </li>
+                        
+                        
                     </ul>
                 </li>
                 
                 <li>Om instruktiner kommer om att Du behöver starta om din dator så gör du det.</li>
                     <ul>
-                        <li>Efter återstart går du återigen till start mappen och kör samma script <b>install.bat</b> igen.</li>
+                        <li>Efter återstart går du återigen till installations-mappen och kör samma script <b>install.bat</b> igen.</li>
                     </ul>
-                <li>Nu är installationen klar!</li>
+                <li>Nu är installationen klar och din webbläsare bör ha öppnats med http://localhost:8080</li>
         
             </ol>
         </div>
 
         <div class="section">
-            <h2>3. Avinstallation</h2>
+            <h2>4. Avinstallation</h2>
             <ul>
                 <li>För att avinstallera Martes går du till mappen <b>install</b> och kör <b>uninstall.bat</b></li>
             </ul>
