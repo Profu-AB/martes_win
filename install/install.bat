@@ -4,7 +4,7 @@ chcp 65001 >nul
 set "CURRENT_PATH=%~dp0"
 set "WSL_TAR_PATH=%CURRENT_PATH%ubuntu-profu.tar"
 
-echo 📦 Installerar WSL... 
+echo Installerar WSL... 
 wsl --version >nul 2>&1
 if %errorlevel% neq 0 (
     echo "WSL är inte installerat så vi installerar detta. Observera att detta kräver att du är lokal admin och det kommer kräva omstart av din dator efteråt."

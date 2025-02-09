@@ -34,4 +34,5 @@ wsl -d %CUSTOM_NAME% --exec bash -c "chmod +x setup.sh && ./setup.sh"
 echo "%CUSTOM_NAME%" has successfully been created  %CURRENT_DIR%\wsl_%CUSTOM_NAME%.
 echo wsl --shutodwn
 wsl --shutdown
+wsl --list -v
 endlocal
