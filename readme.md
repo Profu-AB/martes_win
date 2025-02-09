@@ -2,7 +2,14 @@
     files:
         - index.html
         - install.html
+        - martes.html
         - .env
+        - .gitattributes
+        - .gitignore
+        - styles.css
+        - readme.md
+        - profu.png
+
 
 
 ## install
