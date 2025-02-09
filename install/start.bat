@@ -8,7 +8,7 @@ for /f "tokens=1,2 delims==" %%a in ('findstr /r "^[^#]" "%ENV_FILE%"') do (
 
 
 
-
+call start_wsl.bat
 
 
 :: Specify the path to your Docker Compose YAML file (modify with the actual path)
