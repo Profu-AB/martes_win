@@ -39,6 +39,6 @@ rem Debug: Print the value of PARENT_PATH
 echo Access database path is set to: %PARENT_PATH%
 
 rem Run the import_access.sh script inside the WSL distribution with LICENSE as a parameter
-wsl -d %DISTRO_NAME% --exec bash -c "chmod +x '%IMPORT_SCRIPT_PATH%' && '%IMPORT_SCRIPT_PATH%' '%PARENT_PATH%' '%LICENSE%'"
+wsl -d %DISTRO_NAME% --exec bash -c "chmod +x '%IMPORT_SCRIPT_PATH%' && '%IMPORT_SCRIPT_PATH%' '%LICENSE%'"
 
 pause
