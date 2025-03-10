@@ -22,4 +22,4 @@ backup/
 
 .vscode/
 */.vscode/
-*.env
+.env
