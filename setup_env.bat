@@ -23,4 +23,7 @@ COPY /Y .env.template .env
 :: Overwrite .env with the modified content
 MOVE /Y .env.tmp .env
 
+
+COPY /Y .\install\.env.template .\install\.env
+
 echo ✅ .env file has been created with your license code!
