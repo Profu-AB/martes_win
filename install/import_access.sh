@@ -1,6 +1,15 @@
 
 #!/bin/bash
 
+# Check if LICENSE is passed as an argument
+if [ -z "$1" ]; then
+    echo "Error: LICENSE parameter is missing."
+    echo "Usage: ./import_access.sh <LICENSE>"
+    exit 1
+fi
+
+LICENSE="$1"
+
 # Get the current directory (Linux path)
 CURRENT_PATH=$(pwd)
 
