@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Martes Start</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <HTA:APPLICATION
+        ID="MartesStart"
+        APPLICATIONNAME="Martes Start"
+        BORDER="thick"
+        BORDERSTYLE="complex"
+        CAPTION="yes"
+        SHOWINTASKBAR="yes"
+        SINGLEINSTANCE="yes"
+        SYSMENU="yes"
+        SCROLL="no"
+        WINDOWSTATE="normal"
+    />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #fffaf1;
+            color: #333;
+        }
+        .sticky-header {
+            position: sticky;
+            width: 100vh;
+            top: 0;
+            background-color: #fffaf1;
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            z-index: 1000;
+        }
+        .sticky-header img, .sticky-header h1 {
+            display: inline-block;
+            vertical-align: middle;
+            background-color: navy;
+        }
+        .sticky-header img {
+            height: 40px;
+            margin-right: 20px;
+        }
+        .sticky-header h1 {
+            margin: 0;
+            font-size: 1.5em;
+            color: #2c3e50;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fffaf1;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .field {
+            margin-bottom: 15px;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 5px;
+            font-size: 14px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        #runButton {
+            background-color: #28a745;
+            color: #fff;
+        }
+        #exitButton {
+            background-color: #dc3545;
+            color: #fff;
+        }
+        #status {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #e9ecef;
+            border-radius: 4px;
+            display: none;
+            white-space: pre-wrap;
+        }
+    </style>
+    <script type="text/javascript">
+        function runBatch(batchFileName) {
+            var statusDiv = document.getElementById('status');
+            statusDiv.style.display = "none";
+            statusDiv.innerHTML = "";
+
+            if (batchFileName === "") {
+                alert("Batch file name is empty.");
+                return;
+            }
+            if (batchFileName.toLowerCase().indexOf(".bat") === -1) {
+                alert("Please enter a valid batch file name with a .bat extension.");
+                return;
+            }
+            try {
+                var fso = new ActiveXObject("Scripting.FileSystemObject");
+                var scriptFullPath = fso.GetAbsolutePathName(".");
+                var batchFilePath = fso.BuildPath(scriptFullPath, batchFileName);
+                if (!fso.FileExists(batchFilePath)) {
+                    alert("Batch file not found: " + batchFilePath);
+                    return;
+                }
+                statusDiv.style.display = "block";
+                statusDiv.innerHTML = "Executing " + batchFileName + "...";
+                var shell = new ActiveXObject("WScript.Shell");
+                shell.Run('"' + batchFilePath + '"', 1, false);
+                statusDiv.innerHTML += "\nBatch file executed successfully.";
+            } catch (e) {
+                statusDiv.style.display = "block";
+                statusDiv.innerHTML = "Error executing batch file: " + e.message;
+                alert("Error executing batch file: " + e.message);
+            }
+        }
+
+        function exitApp() {
+            window.close();
+        }
+
+        // Function to update the LICENSE variable in the .env file.
+        // If the file doesn't exist, copy .env.template to create it.
+        function updateLicense() {
+            var newLicense = document.getElementById('envText').value;
+            try {
+                var fso = new ActiveXObject("Scripting.FileSystemObject");
+                var currentFolder = fso.GetAbsolutePathName(".");
+                var parentFolder = fso.GetParentFolderName(currentFolder);
+                var filePath = fso.BuildPath(parentFolder, ".env");
+
+                // If the .env file doesn't exist, copy from .env.template.
+                if (!fso.FileExists(filePath)) {
+                    var templatePath = fso.BuildPath(parentFolder, ".env.template");
+                    if (fso.FileExists(templatePath)) {
+                        fso.CopyFile(templatePath, filePath);
+                    } else {
+                        alert("Neither .env file nor .env.template exists in " + parentFolder);
+                        return;
+                    }
+                }
+
+                // Read the .env file into an array of lines.
+                var fileIn = fso.OpenTextFile(filePath, 1);
+                var lines = [];
+                while (!fileIn.AtEndOfStream) {
+                    lines.push(fileIn.ReadLine());
+                }
+                fileIn.Close();
+
+                // Update the LICENSE line (or append if not found).
+                var found = false;
+                for (var i = 0; i < lines.length; i++) {
+                    if (lines[i].indexOf("LICENSE=") === 0) {
+                        lines[i] = "LICENSE=" + newLicense;
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) {
+                    lines.push("LICENSE=" + newLicense);
+                }
+
+                // Write the updated lines back to the .env file.
+                var fileOut = fso.OpenTextFile(filePath, 2, false);
+                for (var i = 0; i < lines.length; i++) {
+                    fileOut.WriteLine(lines[i]);
+                }
+                fileOut.Close();
+
+                alert("LICENSE value updated successfully in " + filePath);
+            } catch (e) {
+                alert("Error updating .env file: " + e.message);
+            }
+        }
+
+        // Function to read the LICENSE value from the .env file when the app starts.
+        // If the .env file doesn't exist, copy .env.template to create it.
+        function loadLicenseValue() {
+            try {
+                var fso = new ActiveXObject("Scripting.FileSystemObject");
+                var currentFolder = fso.GetAbsolutePathName(".");
+                var parentFolder = fso.GetParentFolderName(currentFolder);
+                var filePath = fso.BuildPath(parentFolder, ".env");
+
+                // If .env does not exist, attempt to copy .env.template to .env.
+                if (!fso.FileExists(filePath)) {
+                    var templatePath = fso.BuildPath(parentFolder, ".env.template");
+                    if (fso.FileExists(templatePath)) {
+                        fso.CopyFile(templatePath, filePath);
+                    } else {
+                        alert("Neither .env file nor .env.template exists in " + parentFolder);
+                        return;
+                    }
+                }
+
+                // Read the file and extract the LICENSE value.
+                var fileIn = fso.OpenTextFile(filePath, 1);
+                var licenseValue = "";
+                while (!fileIn.AtEndOfStream) {
+                    var line = fileIn.ReadLine();
+                    if (line.indexOf("LICENSE=") === 0) {
+                        licenseValue = line.substring("LICENSE=".length);
+                        break;
+                    }
+                }
+                fileIn.Close();
+                // Populate the text box with the LICENSE value.
+                document.getElementById('envText').value = licenseValue;
+            } catch (e) {
+                alert("Error reading .env file: " + e.message);
+            }
+        }
+    </script>
+</head>
+<body onload="loadLicenseValue()">
+    <div class="container">
+        <h2>Martes Start</h2>
+        <div class="field">
+            <button id="runButton" onclick="runBatch('start.bat')">Starta Martes</button>
+            <button id="runButton" onclick="runBatch('stop.bat')">Stäng av Martes</button>
+        </div>
+
+        <!-- New section for LICENSE (Licenskod) -->
+        <div class="field">
+            <h3>Licenskod</h3>
+            <input type="text" id="envText" placeholder="Enter new LICENSE value" style="width:100%;" />
+            <br>
+            <button onclick="updateLicense()">Update LICENSE</button>
+        </div>
+
+        <div class="field">
+            <button id="exitButton" onclick="exitApp()">Avsluta</button>
+        </div>
+        
+        <div id="status"></div>
+    </div>
+</body>
+</html>
