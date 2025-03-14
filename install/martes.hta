@@ -3,6 +3,7 @@
 <head>
     <title>Martes Start</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <HTA:APPLICATION
         ID="MartesStart"
         APPLICATIONNAME="Martes Start"
@@ -178,10 +179,43 @@
                 }
                 fileOut.Close();
 
-                alert("LICENSE value updated successfully in " + filePath);
+                showPopup("Information", "Licenskoden är sparad!", "info");
+                
             } catch (e) {
                 alert("Error updating .env file: " + e.message);
             }
+        }
+
+        function showPopup(title, message, type) {
+            // type kan vara "info", "exclamation" eller "error"
+            var iconSrc = "";
+            switch (type) {
+                case "info":
+                    iconSrc = "info.png";       // Se till att ha info.png tillgänglig
+                    break;
+                case "exclamation":
+                    iconSrc = "exclamation.png"; // Se till att ha exclamation.png tillgänglig
+                    break;
+                case "error":
+                    iconSrc = "error.png";       // Se till att ha error.png tillgänglig
+                    break;
+                default:
+                    iconSrc = "info.png";
+            }
+            
+            document.getElementById("popupIcon").src = iconSrc;
+            document.getElementById("popupTitle").innerText = title;
+            document.getElementById("popupMessage").innerText = message;
+            document.getElementById("customPopup").style.display = "block";
+        }
+  
+        function hidePopup() {
+            document.getElementById("customPopup").style.display = "none";
+        }
+
+        function showMessage(text) {
+            var shell = new ActiveXObject("WScript.Shell");
+            shell.Popup(text, 0, "Information", 64);
         }
 
         // Function to read the LICENSE value from the .env file when the app starts.
@@ -226,10 +260,22 @@
 
 <body onload="loadLicenseValue()">
     <div class="container">
-        <div>
-        <img src="profu.png" width=100px>
-        <h1>Välkommen till Martes</h1>
-        <div>
+     <!-- Hidden overlay popup -->
+        <div id="customPopup" style="display:none; position:fixed; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.5);">
+            <div style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); background:#fff; padding:20px; border:1px solid #ccc; border-radius:4px; text-align:center;">
+                <img id="popupIcon" src="" alt="" style="width:32px; height:32px; vertical-align:middle; margin-right:10px;">
+                <span id="popupTitle" style="font-size:1.2em; font-weight:bold;"></span>
+                <p id="popupMessage"></p>
+                <button onclick="hidePopup()">OK</button>
+            </div>
+        </div>
+
+
+
+        <div style="display: flex; align-items: center;">
+            <img src="profu.png" alt="Profile Image" style="max-width: 30px; height: auto; margin-right: 10px;">
+            <h1 style="margin: 0;">Välkommen till Martes</h1>
+        </div>
 
         <h2>Licenskod</h2>
         <p>Ange din licenskod här</p>
