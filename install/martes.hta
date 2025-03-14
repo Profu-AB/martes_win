@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <HTA:APPLICATION
         ID="MartesStart"
+        
         APPLICATIONNAME="Martes Start"
         BORDER="thick"
         BORDERSTYLE="complex"
@@ -16,7 +17,8 @@
         SCROLL="no"
         WINDOWSTATE="normal"
         INNERWIDTH="800"
-    INNERHEIGHT="600"
+        INNERHEIGHT="600"
+        ICON="profu.ico"
     />
     <style>
         body {
@@ -91,7 +93,8 @@
         }
     </style>
     <script type="text/javascript">
-         window.resizeTo(600,600);
+         window.resizeTo(600,800);
+          
 
         function runBatch(batchFileName, text) {
             var statusDiv = document.getElementById('status');
