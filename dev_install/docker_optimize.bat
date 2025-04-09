@@ -1,0 +1,1 @@
+Optimize-VHD -Path "C:\Users\martin\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu22.04LTS_79rhkp1fndgsc\LocalState\ext4.vhdx" -Mode Full
