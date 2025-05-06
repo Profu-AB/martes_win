@@ -1,35 +1,36 @@
 @echo off
-chcp 65001 >nul
-
-set "CURRENT_PATH=%~dp0"
+setlocal EnableDelayedExpansion
 
 
-echo Installerar WSL... 
-wsl --version >nul 2>&1
-if %errorlevel% neq 0 (
-    echo "WSL är inte installerat så vi installerar detta. Observera att detta kräver att du är lokal admin och det kommer kräva omstart av din dator efteråt."
-    
-    REM Enable the Windows Subsystem for Linux feature
-    dism /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 
-    REM Enable the Virtual Machine Platform feature
-    dism /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
-
-    REM Install the WSL update package
-    echo Uppdaterar WSL...
-    wsl --update
-
-    REM Restart the system to apply changes
-    echo.
-    echo Vänligen starta om  din dator för att färdigställa denna delen av installationen.
-    echo Efter omstart kör du detta script install.bat igen.
-    pause
-    exit /b
+:: Step 1: Copy ..\.env.template to ..\.env
+copy "..\.env.template" "..\.env"
+if errorlevel 1 (
+    echo Failed to copy .env.template to .env in parent folder.
+    exit /b 1
 )
 
-call install_2.bat
+:: Step 2: Prompt for license code
+set /p LICENSEKEY=Enter your license code: 
 
+:: Step 3: Replace the value in LICENSE= line
+set "inputFile=..\.env"
+set "tempFile=..\.env.tmp"
 
-REM TEST2wsl 
+if exist "%tempFile%" del "%tempFile%"
 
-exit /b
+for /f "usebackq delims=" %%A in ("%inputFile%") do (
+    set "line=%%A"
+    echo !line! | findstr /b /c:"LICENSE=" >nul
+    if !errorlevel! == 0 (
+        echo LICENSE=!LICENSEKEY!>>"%tempFile%"
+    ) else (
+        echo !line!>>"%tempFile%"
+    )
+)
+
+move /Y "%tempFile%" "%inputFile%" >nul
+
+echo .env file has been configured successfully.
+
+call install_1.bat
