@@ -21,7 +21,7 @@ services:
 
   backend:
     
-    image: magnemyr/martes-backend:latest
+    image: profu/martes-backend:latest
     container_name: martes_backend
     ports:
       - "8000:8000"
@@ -44,7 +44,7 @@ services:
 
 
   init-mongo:
-    image: magnemyr/martes-backend:latest
+    image: profu/martes-backend:latest
     container_name: init_mongo
     command: ["python", "./macli.py", "-action", "init", "-lk", "test"]
     environment:
@@ -64,7 +64,7 @@ services:
 
 
   martes-nginx:
-    image: magnemyr/martes-nginx:latest
+    image: profu/martes-nginx:latest
     container_name: martes_frontend
     ports:
       - "8080:8080"  # Expose NGINX to the host on port 80  
