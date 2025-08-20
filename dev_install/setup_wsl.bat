@@ -17,7 +17,7 @@ set "FOUND=false"
 wsl -d %DISTRO_NAME% bash -c "sudo bash -c 'id -u martes &>/dev/null || adduser --disabled-password --gecos \"\" martes; echo \"martin ALL=(martes) NOPASSWD: ALL\" > /etc/sudoers.d/martin; echo \"martes ALL=(ALL) NOPASSWD: ALL\" > /etc/sudoers.d/martes; rm -rf /home/martes/martes_setup'"
 
 REM Clone the repository if it doesn't exist, otherwise pull the latest changes as martes user
-wsl -d %DISTRO_NAME% bash -c "sudo -u martes bash -c 'if [ ! -d ~/martes_setup ]; then git clone https://github.com/mmagnemyr/martes_setup.git ~/martes_setup; else cd ~/martes_setup && git pull; fi'"
+wsl -d %DISTRO_NAME% bash -c "sudo -u martes bash -c 'if [ ! -d ~/martes_setup ]; then git clone https://github.com/Profu-AB/martes_setup.git ~/martes_setup; else cd ~/martes_setup && git pull; fi'"
 
 REM Run setup.sh in the martes_setup folder as martes user
 wsl -d %DISTRO_NAME% bash -c "sudo -u martes bash -c 'cd ~/martes_setup && bash setup_new.sh'"
