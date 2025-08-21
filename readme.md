@@ -54,5 +54,5 @@
 
 ## developers
     - documentation
-        - git clone https://github.com/mmagnemyr/martes_doc.git
+        - git clone https://github.com/Profu-AB/martes_doc.git
   
