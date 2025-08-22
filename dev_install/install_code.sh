@@ -1,0 +1,12 @@
+sudo apt update
+sudo apt install wget gpg apt-transport-https
+
+# Add Microsoft’s GPG key
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | sudo tee /usr/share/keyrings/packages.microsoft.gpg > /dev/null
+
+# Add the VS Code repo
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" | sudo tee /etc/apt/sources.list.d/vscode.list
+
+# Update & install
+sudo apt update
+sudo apt install code
