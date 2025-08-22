@@ -34,6 +34,15 @@ this will add the user you selected in the .env file
 ## 05. Run user_access.bat
 This will give the user name selected in the .env file access to the user martes 
 
-## 06. install vs code
-run ./install_code.bat
+
+
+
+
+## 06. install vs code server
+run ./install_code_server.bat
+
+## 07. clone repo martes_doc
+start wsl: wsl -d [DISTRO_NAME]
+cd /home/martes
+git clone https://github.com/Profu-AB/martes_doc.git
 

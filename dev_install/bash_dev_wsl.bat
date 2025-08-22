@@ -10,4 +10,4 @@ for /f "tokens=1,2 delims==" %%a in ('findstr /r "^[^#]" "%ENV_FILE%"') do (
 )
 
 
-wsl -d %DISTRO_DEFAULT_NAME% --exec bash -c "cd /home/%LINUX_USER_NAME%/martes/docker/dev && exec bash"
+wsl -d %DISTRO_NAME% --exec bash -c "cd /home/%LINUX_USER_NAME%/martes/docker/dev && exec bash"
