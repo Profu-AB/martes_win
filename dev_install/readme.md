@@ -35,9 +35,6 @@ this will add the user you selected in the .env file
 This will give the user name selected in the .env file access to the user martes 
 
 
-
-
-
 ## 06. install vs code server
 run ./install_code_server.bat
 
@@ -46,3 +43,13 @@ start wsl: wsl -d [DISTRO_NAME]
 cd /home/martes
 git clone https://github.com/Profu-AB/martes_doc.git
 
+## 08. Configure git
+in martes_doc there is a file called setup_git.md 
+read it and do what it says
+
+this will configure git so that you can push the code
+
+## 09-get the source code
+start wsl: wsl -d [DISTRO_NAME]
+cd /home/martes
+git clone https://github.com/Profu-AB/martes.git
