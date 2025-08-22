@@ -8,7 +8,7 @@ for /f "tokens=1,2 delims==" %%a in ('findstr /r "^[^#]" "%ENV_FILE%"') do (
 )
 
 echo %DISTRO_NAME%
-wsl -d %DISTRO_NAME% bash -c "sudo -u martes bash -c 'cd ~/martes_setup && bash user_access.sh %LINUX_USER_NAME%'"
+wsl -d %DISTRO_NAME% bash -c "sudo -u martes bash -c 'cd /home/martes/martes_setup && bash install_code.sh'"
 
 
 

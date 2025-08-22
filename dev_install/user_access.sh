@@ -21,7 +21,7 @@ fi
 echo "moving on"
 MARTES_HOME="/home/$MARTES_USER"
 # newgrp docker
-echo "Granting full access to '$MARTES_HOME' for user '$CURRENT_USER'..."
+echo "Granting full access to '$MARTES_HOME' for user '%CURRENT_USER%'..."
 sudo usermod -aG $CURRENT_USER $MARTES_USER  # Add the current user to the 'martes' user's group
 sudo chmod -R 770 $MARTES_HOME              # Set full permissions for the owner and group
 sudo setfacl -R -m u:$CURRENT_USER:rwx $MARTES_HOME # Add ACL to ensure access for current user

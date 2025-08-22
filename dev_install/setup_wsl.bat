@@ -24,6 +24,6 @@ REM Run setup.sh in the martes_setup folder as martes user
 wsl -d %DISTRO_NAME% bash -c "sudo -u martes bash -c 'cd ~/martes_setup && bash setup_new.sh'"
 
 
-call user_access.bat
+
 exit /b
 
