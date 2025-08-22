@@ -1,5 +1,5 @@
 CURRENT_DIR="$(pwd)"
-CURRENT_USER=$(whoami)
+CURRENT_USER=test
 MARTES_USER="martes"
 
 sudo apt-get update
