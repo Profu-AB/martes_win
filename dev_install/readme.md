@@ -9,7 +9,10 @@ wsl --unregister martes-dev
 But be aware of that everyting will be deleted!
 
 ## Start
-First clone this repo... but that has already been done.... otherwise you wern't able to read this!
+First, clone this repository (If you’re reading this locally, you’ve already done this and can skip the step.)
+    git clone https://github.com/Profu-AB/martes_win.git
+    
+make sure your in \martes_win i.e c:\martes_win if you cloned from c:
 
 ## 01. Uppdatera .env filen in this repo 
 if there is no .env file yet just copy .env.template to .env
