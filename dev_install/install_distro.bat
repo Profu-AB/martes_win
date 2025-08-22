@@ -14,7 +14,7 @@ set "CURRENT_PATH=%~dp0"
 
 set "FOUND=false"
 
-echo 📦 Installerar Martes 
+echo 📦 Installerar Martes Utvecklingsserver
 echo Kontrollerar om WSL-distributionen %DISTRO_NAME% redan finns installerad...
 
 :: Read and process WSL list output correctly
