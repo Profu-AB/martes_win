@@ -132,6 +132,38 @@ this only works if you have successfully configured git
 ### 12.3 stop the dev containers
 - ./down.sh
 
+### 12.4 update the dev containers from docker
+- ./update.sh
+
+
+### start the back end container
+cd /home/martes/backend
+./docker_bash.sh
+
+start the python server
+python server.py
+
+### View container home pages:
+in your local browser go to the py server page
+ http://localhost:9000/
+and then the frontend 
+http://localhost:4200 
+
+### install mongodb compass on your local host (windows)
+
+#### download link
+https://downloads.mongodb.com/compass/mongodb-compass-1.46.8-win32-x64.exe
+
+install
+
+create a new connection (make sure the containers are running in wsl)
+mongodb exposes port 27019 to windows
+in advanced connection options
+go to tab "Authentication"
+Authentication method: Username/password
+Username:admin
+Password:secret
+Authentication database:admin
 
 # YOURE DONE!!!!!
 
