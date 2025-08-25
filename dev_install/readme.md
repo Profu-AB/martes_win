@@ -39,6 +39,9 @@ wsl --import [your selected distro name for the development] F:\wsl\[your select
 i.e 
 wsl --import martes-dev F:\wsl\martes-dev F:\distro\ubuntu-24.04.3-wsl-amd64.gz
 
+wsl --import martes-dev c:\wsl\martes-dev c:\users\marti\downloads\ubuntu-24.04.3-wsl-amd64.gz
+
+
 ## 02. Run setup_wsl.bat
 
 cd dev_install (now you should be in martes_win/dev_install)
@@ -90,6 +93,8 @@ this will configure git so that you can clone private repos
 ## 09 setup docker
 docker login
 
+use user name: dev.martes@profu.se
+
 ## 10 OPTIONAL setup firebase
 firebase login
 
@@ -105,7 +110,7 @@ this only works if you have successfully configured git
 - cd /home/martes/martes/docker/dev
 - make sure home.sh sets env variable MARTES_HOME to root folder for the source code (open with nano or just cat ./home.sh)
 - run the script
--   ./home.sh
+-   source ./home.sh
 
 ### 12.1 run the dev containers
 - ./up.sh
