@@ -1,5 +1,7 @@
 # Setup Martes Development Server (WSL)
 - If you do not have git installed on windows then install it!
+    winget install --id Git.Git -e --source winget
+
 - You also need the latest version of WSL. Windows subsystem for linux installed.
 
 if you want to completly remove a previous wsl distro run:
@@ -38,10 +40,10 @@ pick a name that you would like to use for the distro. It could be i.e martes-de
 
 wsl --import [your selected distro name for the development] F:\wsl\[your selected distro name for the development] F:\distro\ubuntu-24.04.3-wsl-amd64.gz
 
-i.e 
-wsl --import martes-dev F:\wsl\martes-dev F:\distro\ubuntu-24.04.3-wsl-amd64.gz
-
-wsl --import martes-dev c:\wsl\martes-dev c:\users\marti\downloads\ubuntu-24.04.3-wsl-amd64.gz
+example #1
+    wsl --import martes-dev F:\wsl\martes-dev F:\distro\ubuntu-24.04.3-wsl-amd64.gz
+example #2
+    wsl --import martes-dev c:\wsl\martes-dev c:\users\marti\downloads\ubuntu-24.04.3-wsl-amd64.gz
 
 
 ## 02. Run setup_wsl.bat
@@ -92,10 +94,12 @@ code .
 Follow the instructions in setup_git.md
 this will configure git so that you can clone private repos
 
+when asked for a pass phrase just leve it blenk
+
+
 ## 09 setup docker
 docker login
-
-use user name: dev.martes@profu.se
+use the shard user account with user name: dev.martes@profu.se
 
 ## 10 OPTIONAL setup firebase
 firebase login
@@ -111,7 +115,7 @@ this only works if you have successfully configured git
 ## 12. start dev
 - cd /home/martes/martes/docker/dev
 - make sure home.sh sets env variable MARTES_HOME to root folder for the source code (open with nano or just cat ./home.sh)
-- run the script
+- run the script (important)
 -   source ./home.sh
 
 ### 12.1 run the dev containers
@@ -124,9 +128,12 @@ this only works if you have successfully configured git
             - then you can exit the bash with exit and do a firebase deploy to the web if you want to
 
 - the backend container (python) mounts (volume) app to the backend folder in MARTES_HOME (/martes/backend/app)
-    - so just go to \martes\backend\app and start code . to start develop
-    - if you need to bash into the container use ./martes/backend/docker_bash.sh
-    - output logs from the flask app can be seen herer ./martes/backend/
+    - so just go to \martes\backend\app and start code .
+    - open a terminal window in code and select the wsl prompt
+    - run ./docker_bash.sh to start a bash prompt inside the container.
+    - start the server by typing python server.py
+    - you can also start another wls prompt and use ./martes/backend/docker_logs.sh
+    
 
 ### 12.2 build new versions of the dev containers
 - ./build.sh
@@ -209,3 +216,21 @@ wsl -d martes-dev
 
 cd /home/martes/martes/docker/dev
 ./up.sh
+
+
+## frontend container
+Thie image has the environment for the frontend installed
+- Angular
+- node
+- third party packages 
+
+So if you decide to change anything like add another package you will need to this inside this container. Use ./docker_bash.sh to start a bash prompt then you can install the new package. When that has been done you will need to build the dev cobtainer and upload it to docker
+
+/martes/docker/dev/build.sh
+
+## backend contaienr
+uses a custom built python image currently located in the docker account mmagnmyr
+it contains python and some other components that taks awhile to install. So by using thie image it is faster to rebuild the martes backend container.
+
+## mongodb container
+The data (indata, produktionskurvor) is always stored in the wsl image. So if you terminate that image then all data will be lost. Therefore it is important to backup the database. The backup will be stored in your localhost (windows)
