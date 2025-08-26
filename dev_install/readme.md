@@ -1,4 +1,6 @@
 # Setup Martes Development Server (WSL)
+- If you do not have git installed on windows then install it!
+- You also need the latest version of WSL. Windows subsystem for linux installed.
 
 if you want to completly remove a previous wsl distro run:
 wsl --unregister <DistroName>
