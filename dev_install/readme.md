@@ -42,6 +42,7 @@ wsl --import [your selected distro name for the development] F:\wsl\[your select
 
 example #1
     wsl --import martes-dev F:\wsl\martes-dev F:\distro\ubuntu-24.04.3-wsl-amd64.gz
+     wsl --import py-dev d:\wsl\martes-dev d:\distro\ubuntu-24.04.3-wsl-amd64.gz
 example #2
     wsl --import martes-dev c:\wsl\martes-dev c:\users\marti\downloads\ubuntu-24.04.3-wsl-amd64.gz
 
