@@ -16,6 +16,10 @@ mongo_backup/
 */mongo_backup/
 **/mongo_backup/
 
+mongo_backup_dev/
+*/mongo_backup_dev/
+**/mongo_backup_dev/
+
 backup/
 */backup/
 **/backup/
@@ -24,3 +28,8 @@ backup/
 */.vscode/
 .env
 ".env" 
+
+/mongo_backup_dev/ 
+/mongo_backup/
+
+
