@@ -30,7 +30,7 @@ echo "Creating directory for Docker Compose v2 plugin..."
 sudo mkdir -p /usr/lib/docker/cli-plugins
 
 # Install Docker Compose v2 (Docker Compose as a plugin)
-DOCKER_COMPOSE_VERSION="v2.19.0"  # Latest version of Docker Compose v2
+DOCKER_COMPOSE_VERSION="v2.32.4"  # Updated to work with Docker Engine 29.x
 echo "Downloading Docker Compose v2..."
 curl -SL https://github.com/docker/compose/releases/download/$DOCKER_COMPOSE_VERSION/docker-compose-linux-x86_64 -o /usr/lib/docker/cli-plugins/docker-compose
 
