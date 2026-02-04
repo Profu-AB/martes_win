@@ -50,7 +50,7 @@ example #2
 ## 02. Run setup_wsl.bat
 
 cd dev_install (now you should be in martes_win/dev_install)
-
+    
 ./setup_wsl.bat
 
 This will install docker and create the user martes etc...
