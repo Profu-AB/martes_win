@@ -30,9 +30,17 @@ wsl -d %CUSTOM_NAME% --exec bash -c "chmod +x setup.sh && ./setup.sh"
 
 REM wsl -d %CUSTOM_NAME% --exec ash -c "echo Klart!"
 
+:: Create .wslconfig to prevent WSL from going idle
+set WSLCONFIG=%USERPROFILE%\.wslconfig
+if not exist "%WSLCONFIG%" (
+    echo Creating .wslconfig to prevent WSL idle timeout...
+    echo [wsl2]> "%WSLCONFIG%"
+    echo vmIdleTimeout=-1>> "%WSLCONFIG%"
+)
+
 :: Finish
 echo "%CUSTOM_NAME%" har färdigställts och finns nu i  %CURRENT_DIR%\wsl_%CUSTOM_NAME%.
-echo wsl --shutodwn
+echo wsl --shutdown
 wsl --shutdown
 wsl --list -v
 call start.bat

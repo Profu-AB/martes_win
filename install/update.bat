@@ -18,6 +18,9 @@ set PARENT_PATH=%cd%
 rem Debug: Print the value of PARENT_PATH
 echo PARENT_PATH is set to: %PARENT_PATH%
 
+rem Start WSL background process to keep it alive
+call start_wsl.bat
+
 rem Convert the parent path to a WSL-compatible path using wslpath
 for /f "delims=" %%i in ('wsl wslpath "%PARENT_PATH%"') do set WSL_PARENT_PATH=%%i
 
