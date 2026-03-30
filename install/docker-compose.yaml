@@ -7,12 +7,12 @@ services:
     volumes:
       - mongo_data:/data/db
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
-      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
-      - MONGO_INITDB_DATABASE=${MONGODB_AUTH_DB}
+      - MONGO_INITDB_ROOT_USERNAME=
+      - MONGO_INITDB_ROOT_PASSWORD=
+      - MONGO_INITDB_DATABASE=
     healthcheck:
       test: >
-        bash -c "echo 'db.runCommand({ ping: 1 })' | mongosh admin --username ${MONGO_INITDB_ROOT_USERNAME} --password ${MONGO_INITDB_ROOT_PASSWORD} --authenticationDatabase ${MONGODB_AUTH_DB} --quiet --norc"
+        bash -c "echo 'db.runCommand({ ping: 1 })' | mongosh admin --username  --password  --authenticationDatabase  --quiet --norc"
       interval: 5s
       timeout: 10s
       retries: 3
@@ -28,13 +28,13 @@ services:
     environment:
       - MONGO_HOST=mongo
       - MONGO_PORT=27017 # internal port is always 27017
-      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
-      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
-      - MONGO_INITDB_DATABASE=${MONGODB_AUTH_DB}
-      - JOULE_PROVIDER=${JOULE_PROVIDER:-anthropic}
-      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
-      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://ollama:11434}
-      - OLLAMA_MODEL=${OLLAMA_MODEL:-llama3.1:8b}
+      - MONGO_INITDB_ROOT_USERNAME=
+      - MONGO_INITDB_ROOT_PASSWORD=
+      - MONGO_INITDB_DATABASE=
+      - JOULE_PROVIDER=anthropic
+      - ANTHROPIC_API_KEY=
+      - OLLAMA_BASE_URL=http://martes_ollama:11434
+      - OLLAMA_MODEL=llama3.1:8b
     depends_on:
       mongo:
         condition: service_healthy
@@ -46,24 +46,6 @@ services:
       timeout: 10s
       retries: 3
 
-  ollama:
-    image: profu/martes-ollama:latest
-    container_name: martes_ollama
-    ports:
-      - "11434:11434"
-    volumes:
-      - ollama_data:/root/.ollama
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: all
-              capabilities: [gpu]
-    profiles:
-      - ollama
-    networks:
-      - app_default
 
   init-mongo:
     image: profu/martes-backend:latest
@@ -72,9 +54,9 @@ services:
     environment:
       - MONGO_HOST=mongo
       - MONGO_PORT=27017
-      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
-      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
-      - MONGO_INITDB_DATABASE=${MONGODB_AUTH_DB}
+      - MONGO_INITDB_ROOT_USERNAME=
+      - MONGO_INITDB_ROOT_PASSWORD=
+      - MONGO_INITDB_DATABASE=
     depends_on:
       backend:
         condition: service_healthy
@@ -101,8 +83,6 @@ services:
 volumes:
   mongo_data:
     name: app_mongo_data_prod
-  ollama_data:
-    name: app_ollama_data_prod
 
 networks:
   app_default:

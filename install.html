@@ -1,107 +1,133 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Martes</title>
-        <link rel="stylesheet" href="styles.css">
-      
-    </head>
-    <body>
-        
-        <div class="sticky-header">
-            <img src="profu.png" alt="Profu Logo">
-            <h1>Installationsinstruktioner för Martes</h1>
-        </div>
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Martes - Installation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
-        <div class="section">
-            <h2>Hur installeras Martes?</h2>
-            <ul>
-                <li>Martes är en klassisk webbapplikation som kommer att köras i din webbläsare.</li>
-                <li>För att kunna installera detta på din dator kommer vi att använda oss <b>Windows Subsystem for Linux</b> eller WSL.</li>
-                <li>Om WSL inte finns på din dator sedan tidigare behöver vi installera det först.</li>
+    <div class="sticky-header">
+        <img src="profu.png" alt="Profu Logo">
+        <h1>Installationsinstruktioner</h1>
+    </div>
+
+    <div class="section">
+        <h2>1. Hur installeras Martes?</h2>
+        <p>Martes är en webbapplikation som körs lokalt i din webbläsare. Under huven använder den <b>Docker</b>-containrar som körs i <b>Windows Subsystem for Linux (WSL)</b>.</p>
+        <p>Installationsprocessen kontrollerar automatiskt om WSL finns sedan tidigare och installerar det om det behövs.</p>
+    </div>
+
+    <div class="section">
+        <h2>2. Systemkrav</h2>
+        <table>
+            <tr><td><strong>Operativsystem</strong></td><td>Windows 10 (build 19041+) eller Windows 11</td></tr>
+            <tr><td><strong>Diskutrymme</strong></td><td>Minst 4 GB ledigt</td></tr>
+            <tr><td><strong>Behörigheter</strong></td><td>Administratörsrättigheter krävs vid första installationen</td></tr>
+        </table>
+        <p><strong>Tips:</strong> Kontrollera din Windows-version genom att trycka <code>Win + R</code>, skriva <code>winver</code> och trycka Enter.</p>
+    </div>
+
+    <div class="section">
+        <h2>3. Installation</h2>
+        <ol>
+            <li>Öppna <strong>Windows Terminal</strong> eller <strong>Kommandotolken</strong> (cmd) som administratör:
                 <ul>
-                    <li>Denna installation kommer då att kräva att du kan logga in med administratörsrättigheter på din dator.</li>
+                    <li>Sök efter "Terminal" eller "cmd" i Start-menyn</li>
+                    <li>Högerklicka och välj <strong>Kör som administratör</strong></li>
                 </ul>
-                <li>Installationsprocessen för Martes kommer att kontrollera om WSL finns sedan tidigare och installera det om det inte gör det.</li>
+            </li>
+            <li>Navigera till mappen där du placerade Martes installationsfiler:
+                <pre><code>cd install
+install.bat</code></pre>
+            </li>
+            <li>Om du uppmanas att starta om datorn: gör det, gå sedan tillbaka till mappen och kör <code>install.bat</code> igen.</li>
+            <li>Installationen är klar! Din webbläsare öppnas automatiskt med <a href="http://localhost:8080">http://localhost:8080</a></li>
+        </ol>
+    </div>
 
-                </li>
-            </ul>
-        </div>
+    <div class="section">
+        <h2>4. Licenskod</h2>
+        <p>Du får en licenskod från Profu. Den behöver anges på <b>två ställen</b>:</p>
+        <ol>
+            <li>I kommandotolken, kör:
+                <pre><code>setup_env.bat DIN_LICENSKOD</code></pre>
+            </li>
+            <li>I Martes webbgränssnitt:
+                <ul>
+                    <li>Klicka på <strong>?</strong>-ikonen uppe till höger</li>
+                    <li>Under <em>Licensnyckel</em>, klistra in din kod och klicka <strong>Aktivera</strong></li>
+                </ul>
+            </li>
+        </ol>
+    </div>
 
-        <div class="section">
-            <h2>Kontrollera systemkraven</h2>
-            <ul>
-                <li><strong>Operativsystem:</strong> Windows 10 (build 19041 eller senare) eller Windows 11</li>
-                <li><b>Ledigt diskutrymme</b>: minst 4GB utrymme kommer att krävs.</li>
-                <li><strong>Behörigheter:</strong> Temporär tillgång till administratörsrättigheter kan krävas</li>
-                
-            </ul>
+    <div class="section">
+        <h2>5. Uppdatering</h2>
+        <p>För att uppdatera Martes till senaste versionen:</p>
+        <pre><code>cd install
+update.bat</code></pre>
+        <p>Scriptet laddar ner de senaste versionerna och startar om tjänsterna. Dina data och inställningar bevaras.</p>
+        <p><strong>Obs:</strong> Om du har Joule AI med Ollama installerat uppdateras den <em>separat</em>:</p>
+        <pre><code>cd install
+update_ollama.bat</code></pre>
+    </div>
 
-            <p><strong>Tips</strong>: Så här kontrollerar du din Windows Version:</p>
-            <ul>
-                <li>Tryck på Win + R för att öppna dialogrutan Kör.</li>
-                <li>Skriv winver och tryck på Enter.</li>
-                <li>Kör du Windows 10 kontrollera att att <strong>OS Build</strong> är minst 19041.</li>
-            </ul>
-        </div>
+    <div class="section">
+        <h2 id="joule-ai">6. Joule AI (valfritt)</h2>
+        <p><strong>Först:</strong> Kör <code>gitpull.bat</code> i martes_win-mappen för att hämta de senaste installationsfilerna.</p>
+        <p>Joule AI är Martes inbyggda AI-assistent. Den kan svara på frågor om dina indatauppsättningar, köra simuleringar och generera rapporter.</p>
+        <p>Det finns två sätt att använda Joule AI:</p>
 
-        <div class="section">
-            <h2>Licenskod</h2>
-            <ol>
-                <li>Profu kommer att skicka en licenskod till dig.</li>
-                <li>Denna kod måste du använda på två ställen</li> 
-                <ol>
-                    <li>Kör bat filen setup_env.bat och skicka med din kod som parameter</li>
-                    <ul>
-                        <li>Exempel setup_env.bat MINLICENSKOD</li>
-                    </ul>
-                    <li>När du startat Martes i webläsaren för första gången klickar du på ikonen med ett "?" uppe i högra hörnet</li>
-                    <ul>
-                        <li>Under rubriken Licensnyckel finns ett textfält. Här klistrar du in din licenskod och trycker på knappen "Aktivera"</li>
-                    </ul>
-                </ol>
-                
-            </ol>
-        </div>
+        <h3>Alternativ A: Anthropic Claude (molnbaserad)</h3>
+        <p>Kräver internetåtkomst och en API-nyckel från <strong>Profu</strong>.</p>
+        <ol>
+            <li>Öppna filen <code>install\.env</code> i en texteditor</li>
+            <li>Lägg till följande rader:
+                <pre><code>JOULE_PROVIDER=anthropic
+ANTHROPIC_API_KEY=din-api-nyckel-här</code></pre>
+            </li>
+            <li>Starta om Martes:
+                <pre><code>cd install
+update.bat</code></pre>
+            </li>
+        </ol>
 
-        <div class="section">
-            <h2>Installation</h2>
-            
-            <ol>
-                <li>Öppna programmet <strong>Windows Terminal</strong> eller en <strong>kommandotolken</strong> (cmd.exe) med administratörsrättigheter genom att:
-                    <ul>
-                        <li>Sök efter "Terminal" eller "cmd" i Start-menyn.</li>
-                        <li>Högerklicka på "Windows Terminal" eller "Kommandtolken" och välj <strong>Kör som administratör</strong>.</li>
-                    </ul>
-                </li>
-                <li>se till att du står i mappen där du placerade martes installationsfiler och skriv in följande :</li>
-                    <ul>
-                        
-                        <pre><code>cd install</code></pre>
-                        <pre><code>install.bat</code></pre>
-                        
-                        
-                        
-                    </ul>
-                </li>
-                
-                <li>Om instruktiner kommer om att Du behöver starta om din dator så gör du det.</li>
-                    <ul>
-                        <li>Efter återstart går du återigen till installations-mappen och kör samma script <b>install.bat</b> igen.</li>
-                    </ul>
-                <li>Nu är installationen klar och din webbläsare bör ha öppnats med http://localhost:8080</li>
-        
-            </ol>
-        </div>
+        <h3>Alternativ B: Ollama (lokal, gratis)</h3>
+        <p>Kör AI-modellen lokalt på din dator. Kräver <strong>~11 GB</strong> extra diskutrymme. En NVIDIA GPU rekommenderas för snabba svar.</p>
+        <ol>
+            <li>Se till att Martes är startad (kör <code>start.bat</code> om det behövs)</li>
+            <li>Installera Ollama:
+                <pre><code>cd install
+install_ollama.bat</code></pre>
+                <p>Nedladdningen är ca 11 GB och kan ta en stund.</p>
+            </li>
+            <li>Öppna filen <code>install\.env</code> och lägg till:
+                <pre><code>JOULE_PROVIDER=ollama</code></pre>
+            </li>
+            <li>Starta om Martes:
+                <pre><code>cd install
+update.bat</code></pre>
+            </li>
+        </ol>
 
-        <div class="section">
-            <h2>Avinstallation</h2>
-            <ul>
-                <li>För att avinstallera Martes går du till mappen <b>install</b> och kör <b>uninstall.bat</b></li>
-            </ul>
-        </div>
+        <h3>Uppdatera Ollama</h3>
+        <pre><code>cd install
+update_ollama.bat</code></pre>
 
-      
-    </body>
-    </html>
+        <h3>Avinstallera Ollama</h3>
+        <pre><code>cd install
+uninstall_ollama.bat</code></pre>
+        <p>Detta tar bort Ollama-containern, modellen och frigör ~11 GB diskutrymme. Resten av Martes påverkas inte.</p>
+    </div>
+
+    <div class="section">
+        <h2>7. Avinstallation</h2>
+        <p>För att avinstallera Martes helt:</p>
+        <pre><code>cd install
+uninstall.bat</code></pre>
+    </div>
+
+</body>
+</html>

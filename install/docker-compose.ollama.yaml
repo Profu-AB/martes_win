@@ -1,0 +1,26 @@
+services:
+  ollama:
+    image: profu/martes-ollama:latest
+    container_name: martes_ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    networks:
+      - martes_network
+
+volumes:
+  ollama_data:
+    name: app_ollama_data
+
+networks:
+  martes_network:
+    external: true
+    name: install_app_default
