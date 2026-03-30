@@ -9,7 +9,7 @@ for /f "tokens=1,2 delims==" %%a in ('findstr /r "^[^#]" "%ENV_FILE%"') do (
 set PARENT_PATH=%~dp0..
 cd %PARENT_PATH%
 
-call install\start_wsl.bat
+call "%~dp0start_wsl.bat"
 
 for /f "delims=" %%i in ('wsl wslpath "%PARENT_PATH%"') do set WSL_PARENT_PATH=%%i
 set SCRIPT_PATH=%WSL_PARENT_PATH%/install/uninstall_ollama.sh
