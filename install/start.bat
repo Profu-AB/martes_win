@@ -15,8 +15,6 @@ wsl -d %DISTRO_NAME% --exec docker compose -f ./docker-compose.yaml up -d
 :: Finish
 echo Docker Compose has started the services in detached mode.
 
-:: start http://localhost:8080
 start http://localhost:8080/?license=%LICENSE%
 
-
-
+endlocal

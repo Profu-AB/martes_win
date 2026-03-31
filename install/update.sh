@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Get the current directory (Linux path)
-CURRENT_PATH=$(pwd)
-
 # turn off the running containers
 docker compose -f ./install/docker-compose.yaml down
 

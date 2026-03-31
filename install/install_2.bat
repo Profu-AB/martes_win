@@ -1,13 +1,16 @@
 @echo off
 chcp 65001 >nul
-set "ENV_FILE=%~dp0..\.env"
+setlocal EnableDelayedExpansion
+
+set "SCRIPT_DIR=%~dp0"
+set "ENV_FILE=%SCRIPT_DIR%..\.env"
 for /f "tokens=1,2 delims==" %%a in ('findstr /r "^[^#]" "%ENV_FILE%"') do (
-    
+
     if "%%a"=="DISTRO_NAME" set "DISTRO_NAME=%%b"
 )
 
-:: Get the current directory
-set CURRENT_DIR=%cd%
+:: Get the script's own directory (remove trailing backslash)
+set "CURRENT_DIR=%SCRIPT_DIR:~0,-1%"
 
 :: Define the Alpine tarball location in the current directory's "tars" folder
 set TAR_FILE=%CURRENT_DIR%\tars\alpine_edge-080220250902.tar

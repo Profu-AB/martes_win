@@ -1,18 +1,18 @@
 services:
   mongo:
-    image: mongo:8.0 
+    image: mongo:8.0
     container_name: martes_mongodb
     ports:
       - "27018:27017"
     volumes:
       - mongo_data:/data/db
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=
-      - MONGO_INITDB_ROOT_PASSWORD=
-      - MONGO_INITDB_DATABASE=
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+      - MONGO_INITDB_DATABASE=${MONGODB_AUTH_DB}
     healthcheck:
       test: >
-        bash -c "echo 'db.runCommand({ ping: 1 })' | mongosh admin --username  --password  --authenticationDatabase  --quiet --norc"
+        bash -c "echo 'db.runCommand({ ping: 1 })' | mongosh admin --username ${MONGO_INITDB_ROOT_USERNAME} --password ${MONGO_INITDB_ROOT_PASSWORD} --authenticationDatabase ${MONGODB_AUTH_DB} --quiet --norc"
       interval: 5s
       timeout: 10s
       retries: 3
@@ -20,7 +20,7 @@ services:
       - app_default
 
   backend:
-    
+
     image: profu/martes-backend:latest
     container_name: martes_backend
     ports:
@@ -28,13 +28,13 @@ services:
     environment:
       - MONGO_HOST=mongo
       - MONGO_PORT=27017 # internal port is always 27017
-      - MONGO_INITDB_ROOT_USERNAME=
-      - MONGO_INITDB_ROOT_PASSWORD=
-      - MONGO_INITDB_DATABASE=
-      - JOULE_PROVIDER=anthropic
-      - ANTHROPIC_API_KEY=
-      - OLLAMA_BASE_URL=http://martes_ollama:11434
-      - OLLAMA_MODEL=llama3.1:8b
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+      - MONGO_INITDB_DATABASE=${MONGODB_AUTH_DB}
+      - JOULE_PROVIDER=${JOULE_PROVIDER:-anthropic}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://martes_ollama:11434}
+      - OLLAMA_MODEL=${OLLAMA_MODEL:-llama3.1:8b}
     depends_on:
       mongo:
         condition: service_healthy
@@ -46,7 +46,6 @@ services:
       timeout: 10s
       retries: 3
 
-
   init-mongo:
     image: profu/martes-backend:latest
     container_name: init_mongo
@@ -54,9 +53,9 @@ services:
     environment:
       - MONGO_HOST=mongo
       - MONGO_PORT=27017
-      - MONGO_INITDB_ROOT_USERNAME=
-      - MONGO_INITDB_ROOT_PASSWORD=
-      - MONGO_INITDB_DATABASE=
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+      - MONGO_INITDB_DATABASE=${MONGODB_AUTH_DB}
     depends_on:
       backend:
         condition: service_healthy
@@ -71,7 +70,7 @@ services:
     image: profu/martes-nginx:latest
     container_name: martes_frontend
     ports:
-      - "8080:8080"  # Expose NGINX to the host on port 80  
+      - "8080:8080"  # Expose NGINX to the host on port 80
     #volumes:
       # Mount custom Nginx config to override the one in the image
     #  - ./nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
