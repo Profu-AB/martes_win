@@ -10,6 +10,16 @@ if errorlevel 1 (
     exit /b 1
 )
 
+:: Step 1b: Ensure install.env exists (MongoDB credentials for docker-compose)
+if not exist "%~dp0.env" (
+    copy "%~dp0.env.template" "%~dp0.env"
+    if errorlevel 1 (
+        echo Failed to copy install.env.template to install.env.
+        exit /b 1
+    )
+    echo install.env created from template.
+)
+
 :: Step 2: Prompt for license code
 set /p LICENSEKEY=Enter your license code: 
 
