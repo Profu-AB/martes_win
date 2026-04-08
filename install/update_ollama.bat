@@ -11,7 +11,7 @@ cd %PARENT_PATH%
 
 call "%~dp0start_wsl.bat"
 
-for /f "delims=" %%i in ('wsl wslpath "%PARENT_PATH%"') do set WSL_PARENT_PATH=%%i
+for /f "delims=" %%i in ('wsl -d %DISTRO_NAME% wslpath "%PARENT_PATH%"') do set WSL_PARENT_PATH=%%i
 set SCRIPT_PATH=%WSL_PARENT_PATH%/install/update_ollama.sh
 
 wsl -d %DISTRO_NAME% --exec bash -c "chmod +x '%SCRIPT_PATH%' && '%SCRIPT_PATH%'"
