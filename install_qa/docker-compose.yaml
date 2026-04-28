@@ -1,0 +1,83 @@
+services:
+  mongo:
+    image: mongo:8.0
+    container_name: martes_mongodb_qa
+    ports:
+      - "27020:27017"
+    volumes:
+      - mongo_data_qa:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=
+      - MONGO_INITDB_ROOT_PASSWORD=
+      - MONGO_INITDB_DATABASE=
+    healthcheck:
+      test: >
+        bash -c "echo 'db.runCommand({ ping: 1 })' | mongosh admin --username  --password  --authenticationDatabase  --quiet --norc"
+      interval: 5s
+      timeout: 10s
+      retries: 3
+    networks:
+      - qa_default
+
+  backend:
+    image: profu/martes-backend:test
+    container_name: martes_backend_qa
+    ports:
+      - "8001:8000"
+    environment:
+      - MONGO_HOST=mongo
+      - MONGO_PORT=27017
+      - MONGO_INITDB_ROOT_USERNAME=
+      - MONGO_INITDB_ROOT_PASSWORD=
+      - MONGO_INITDB_DATABASE=
+      - JOULE_PROVIDER=anthropic
+      - ANTHROPIC_API_KEY=
+      - OLLAMA_BASE_URL=http://martes_ollama_qa:11434
+      - OLLAMA_MODEL=llama3.1:8b
+    depends_on:
+      mongo:
+        condition: service_healthy
+    networks:
+      - qa_default
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f -k http://backend:8000/getVersion || exit 1"]
+      interval: 5s
+      timeout: 10s
+      retries: 3
+
+  init-mongo:
+    image: profu/martes-backend:test
+    container_name: init_mongo_qa
+    command: ["python", "./macli.py", "-action", "init", "-lk", "test"]
+    environment:
+      - MONGO_HOST=mongo
+      - MONGO_PORT=27017
+      - MONGO_INITDB_ROOT_USERNAME=
+      - MONGO_INITDB_ROOT_PASSWORD=
+      - MONGO_INITDB_DATABASE=
+    depends_on:
+      backend:
+        condition: service_healthy
+      mongo:
+        condition: service_healthy
+    restart: "no"
+    networks:
+      - qa_default
+
+  martes-nginx:
+    image: profu/martes-nginx:test
+    container_name: martes_frontend_qa
+    ports:
+      - "8081:8080"
+    depends_on:
+      - backend
+    networks:
+      - qa_default
+
+volumes:
+  mongo_data_qa:
+    name: app_mongo_data_qa
+
+networks:
+  qa_default:
+    driver: bridge
